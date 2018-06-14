@@ -122,3 +122,5 @@ def plt_settings():
     plt.rcParams['figure.figsize'] = (8.0, 5.5)
     matplotlib.rcParams['lines.linewidth'] = 3
 
+if __name__ == '__main__':
+    meta_exp.run()
