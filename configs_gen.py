@@ -1,5 +1,5 @@
 configs = [
-{"folder":"blah",
+{"folder":"tests/cogsci",
 "imports":[],
 "nbiter":4,
 "exec_type":"avakas",
@@ -11,16 +11,16 @@ configs = [
 "metrics_global":["conv_time"],
 },
 
-{"folder":"blih/blah/bloh",
+{"folder":"tests/coherence",
 "imports":[],
 "nbiter":4,
 "exec_type":"avakas",
 "plt_settings":"classic",
-"func_type":"classic",
+"func_type":"coherence",
 "tmax_type":"classic",
-"params":["N","M"],
-"metrics_local":[],
-"metrics_global":["conv_time"],
+"params":["N","M","active","time_scale"],
+"metrics_local":["Nlink","srtheo","N_d"],
+"metrics_global":["conv_time","mem_max","N_d_max"],
 },
 
 ]

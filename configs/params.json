@@ -5,3 +5,4 @@
           "gamma":{"default_value":0.01,"values":[0.01,1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
           "active":{"default_value":false,"values":[false,true],"short_label":"active"}
         }
+
