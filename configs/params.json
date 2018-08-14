@@ -1,0 +1,7 @@
+{"N":{"default_value":40,"label":"population size","values":[40],"min":0,"short_label":"N"},
+          "M":{"default_value":40,"label":"#meanings","values":[40],"min":0,"short_label":"M"},
+          "W":{"default_value":40,"label":"#words","values":[40],"min":0,"short_label":"W"},
+          "time_scale":{"default_value":1,"label":"time scale","values":[1,2,3,4,5,6,7,8,9,10,20,30,50],"min":0,"max":30,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
+          "gamma":{"default_value":0.01,"values":[0.01,1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
+          "active":{"default_value":false,"values":[false,true],"short_label":"active"}
+        }

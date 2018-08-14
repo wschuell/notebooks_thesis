@@ -1,0 +1,13 @@
+{           "srtheo":{"label":"Theoretical Communicative Success"},
+            "Nlink":{"unit_label":"#associations","label":"Local Complexity"},
+            "N_d":{"unit_label":"#associations","label":"Global Complexity"},
+            "N_meanings":{"unit_label":"#meanings","label":"Number of meanings"},
+            "N_words":{"unit_label":"#words","label":"Number of words"},
+
+
+
+            "conv_time":{"unit_label":"#interactions","label":"Convergence Time"},
+            "conv_time2":{"unit_label":"#interactions","label":"Convergence Time"},
+            "max_mem":{"unit_label":"#associations","label":"Maximum Local Complexity"},
+            "max_N_d":{"unit_label":"#associations","label":"Maximum Global Complexity"}
+                    }
