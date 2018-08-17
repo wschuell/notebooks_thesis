@@ -3,6 +3,10 @@
             "N_d":{"unit_label":"#associations","label":"Global Complexity"},
             "N_meanings":{"unit_label":"#meanings","label":"Number of meanings"},
             "N_words":{"unit_label":"#words","label":"Number of words"},
+            "line_border":{"unit_label":"#agents","label":"Position of the 1D lexicon boundary"},
+            "line_border_width":{"unit_label":"#agents","label":"Width of the 1D lexicon boundary"},
+            "line_border_abs":{"unit_label":"#agents","label":"Distance to origin of the 1D lexicon boundary"},
+            "line_border_squared":{"unit_label":"#agents","label":"Squared distance to origin of the 1D lexicon boundary"},
 
 
 

@@ -9,10 +9,13 @@
             },
         "strat_cfg": {
           "vu_cfg": {
-            "vu_type": "minimal"
+            "vu_type": {{% vu_type,"minimal" %}}
           },
           "success_cfg": {
             "success_type": "global_norandom"
+              },
+          "wordchoice_cfg": {
+            "wordchoice_type": {{% wordchoice,"random" %}}
               },
               "strat_type": "naive" #random topic choice: changed if active is True
             },
@@ -34,6 +37,10 @@
                       "time_scale": {{% time_scale,2 %}},
                       "mem_type": "interaction_counts_sliding_window_local"
                         }], })
+    if {{% W_inf,False %}}:
+        base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,20 %}}*{{% N,10 %}}
+        base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':{{% M,20 %}},'W_range':{{% M,20 %}}*{{% N,10 %}}}
+
     return base_cfg
 
 ###coherence###
@@ -46,10 +53,13 @@
             },
         "strat_cfg": {
           "vu_cfg": {
-            "vu_type": "minimal"
+            "vu_type": {{% vu_type,"minimal" %}}
           },
           "success_cfg": {
             "success_type": "global_norandom"
+              },
+          "wordchoice_cfg": {
+            "wordchoice_type": {{% wordchoice,"random" %}}
               },
               "strat_type": "naive" #random topic choice: changed if active is True
             },
@@ -71,6 +81,9 @@
                       "time_scale": {{% time_scale,2 %}},
                       "mem_type": "interaction_counts_sliding_window_local"
                         }],})
+    if {{% W_inf,False %}}:
+        base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,20 %}}*{{% N,10 %}}
+        base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':{{% M,20 %}},'W_range':{{% M,20 %}}*{{% N,10 %}}}
     return base_cfg
 
 ###halfline###
@@ -83,10 +96,13 @@
             },
         "strat_cfg": {
           "vu_cfg": {
-            "vu_type": "minimal"
+            "vu_type": {{% vu_type,"minimal" %}}
           },
           "success_cfg": {
             "success_type": "global_norandom"
+              },
+          "wordchoice_cfg": {
+            "wordchoice_type": {{% wordchoice,"random" %}}
               },
               "strat_type": "naive" #random topic choice: changed if active is True
             },
@@ -104,6 +120,9 @@
             },
             "agent_init_cfg": {
               'agent_init_type':'converged_halfline'
+            },
+            "agentpick_cfg": {
+              'agentpick_type':'neighbor_pick'
             },
           }
         }
