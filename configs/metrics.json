@@ -7,6 +7,7 @@
             "line_border_width":{"unit_label":"#agents","label":"Width of the 1D lexicon boundary"},
             "line_border_abs":{"unit_label":"#agents","label":"Distance to origin of the 1D lexicon boundary"},
             "line_border_squared":{"unit_label":"#agents","label":"Squared distance to origin of the 1D lexicon boundary"},
+            "nb_inventions":{"unit_label":"#inventions","label":"Average inventions per agent"},
 
 
 

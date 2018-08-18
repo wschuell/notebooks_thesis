@@ -1,6 +1,9 @@
 #####classic####
     return 100000
 
+#####medium####
+    return 40000
+
 #####long####
     return 1000000
 

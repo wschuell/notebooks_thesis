@@ -19,6 +19,7 @@
         "active":{"param_name":"active","default_value":false,"values":[false,true],"short_label":"active"},
 
         "wordchoice":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart"],"short_label":"Word Choice","label":"Word Choice Policy"},
+        "wordchoice_2":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart","membased"],"short_label":"Word Choice","label":"Word Choice Policy"},
 
         "vu_type":{"param_name":"vu_type","default_value":"minimal","values":["minimal","imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"}
 }

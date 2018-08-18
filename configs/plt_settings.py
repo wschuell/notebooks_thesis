@@ -16,3 +16,5 @@ def plot_settings():
 	matplotlib.rcParams['legend.fontsize'] = fontsize
 	matplotlib.rcParams['figure.figsize'] = 8,5.5
 	matplotlib.rcParams['lines.linewidth'] = 3
+	matplotlib.rcParams['font.family'] = 'serif'
+	matplotlib.rcParams['font.serif'] = ['Computer Modern Roman'] + matplotlib.rcParams['font.serif']
