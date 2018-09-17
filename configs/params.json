@@ -1,15 +1,27 @@
 {       "N":{"param_name":"N","default_value":40,"label":"population size","values":[40],"min":0,"short_label":"N"},
         "N_few":{"param_name":"N","default_value":40,"label":"population size","values":[10,20,40],"min":0,"short_label":"N"},
+        "N_few_bis":{"param_name":"N","default_value":40,"label":"population size","values":[20,40],"min":0,"short_label":"N"},
         "N_all":{"param_name":"N","default_value":40,"label":"population size","values":[10,20,30,40,50,70,100],"min":0,"short_label":"N"},
+        "N_all1000":{"param_name":"N","default_value":40,"label":"population size","values":[10,20,30,40,50,70,100,200,500,1000],"min":0,"short_label":"N"},
+        "N_all10000":{"param_name":"N","default_value":40,"label":"population size","values":[10,20,30,40,50,70,100,200,500,1000,2000,5000,10000],"min":0,"short_label":"N"},
         "N_halfline":{"param_name":"N","default_value":1000,"label":"population size","values":[1000],"min":0,"short_label":"N"},
+        "N_record":{"param_name":"N","default_value":100000,"label":"population size","values":[100000],"min":0,"short_label":"N"},
 
         "M":{"param_name":"M","default_value":40,"label":"#meanings","values":[40],"min":0,"short_label":"M"},
+        "M_1":{"param_name":"M","default_value":1,"label":"#meanings","values":[1],"min":0,"short_label":"M"},
+        "M_10":{"param_name":"M","default_value":10,"label":"#meanings","values":[10],"min":0,"short_label":"M"},
+        "M_1_10":{"param_name":"M","default_value":1,"label":"#meanings","values":[1,10],"min":0,"short_label":"M"},
+        "M_basic":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40],"min":0,"short_label":"M"},
         "M_100":{"param_name":"M","default_value":40,"label":"#meanings","values":[40,100],"min":0,"short_label":"M"},
         "M_few_low":{"param_name":"M","default_value":10,"label":"#meanings","values":[1,2,3,5,7,10],"min":0,"short_label":"M"},
+        "M_all100":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100],"min":0,"short_label":"M"},
+        "M_all1000":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100,200,500,1000],"min":0,"short_label":"M"},
 
         "W":{"param_name":"W","default_value":40,"label":"#words","values":[40],"min":0,"short_label":"W"},
+        "Wscale":{"param_name":"W","default_value":100,"label":"#words","values":[10,100,1000,10000],"min":0,"short_label":"W"},
 
         "W_inf":{"param_name":"W_inf","default_value":false,"values":[false,true],"short_label":"W_inf"},
+        "W_inf_true":{"param_name":"W_inf","default_value":true,"values":[true],"short_label":"W_inf"},
 
         "time_scale":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,4,5,6,7,8,9,10,20,30,50],"min":0,"max":30,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "time_scale_few":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
@@ -21,6 +33,23 @@
         "wordchoice":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart"],"short_label":"Word Choice","label":"Word Choice Policy"},
         "wordchoice_2":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart","membased"],"short_label":"Word Choice","label":"Word Choice Policy"},
 
-        "vu_type":{"param_name":"vu_type","default_value":"minimal","values":["minimal","imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"}
+        "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction scenario","label":"Interaction Scenario"},
+
+        "vu_type":{"param_name":"vu_type","default_value":"minimal","values":["minimal","imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
+        "vu_type_basic":{"param_name":"vu_type","default_value":"minimal","values":["minimal","imitation","BLIS"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
+        "vu_type_imitation":{"param_name":"vu_type","default_value":"imitation","values":["imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
+
+        "strat_type":{"param_name":"strat_type","default_value":"coherence","values":["coherence","coherence_last"],"short_label":"Coherence Strategy type","label":"Coherence Strategy type"},
+        "strat_type_basic":{"param_name":"strat_type","default_value":"success_threshold_wise","values":["success_threshold_wise","mincounts","decision_vector_gainsoftmax"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_exploexplo":{"param_name":"strat_type","default_value":"success_threshold_wise","values":["naive","only_explore","only_exploit"],"short_label":"Strategy","label":"Strategy"},
+
+        "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},
+
+        "voc_type_mat":{"param_name":"voc_type","default_value":"matrix_new","values":["matrix_new"],"short_label":"Voc Type","label":"Vocabulary Type"},
+        "voc_type_sparse":{"param_name":"voc_type","default_value":"sparse_new","values":["sparse_new"],"short_label":"Voc Type","label":"Vocabulary Type"},
+        "voc_type_2dd":{"param_name":"voc_type","default_value":"2dictdict","values":["2dictdict"],"short_label":"Voc Type","label":"Vocabulary Type"},
+
+
+        "optimized_true":{"param_name":"optimized","default_value":true,"values":[true],"short_label":"Optimized","label":"Optimized"}
 }
 
