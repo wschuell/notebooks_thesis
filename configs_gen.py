@@ -11,7 +11,7 @@ configs = [
 "func_type":"basic",
 "tmax_type":"scaling_bigmax",
 "params":["N","M",'W_inf_true'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -23,7 +23,7 @@ configs = [
 "func_type":"basic",
 "tmax_type":"scaling_bigmax",
 "params":["N","M_100",'W_inf_true','vu_type_basic'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -35,7 +35,7 @@ configs = [
 "func_type":"basic",
 "tmax_type":"scaling_bigmax",
 "params":["N","M_1",'W_inf_true','wordchoice'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -47,7 +47,7 @@ configs = [
 "func_type":"basic",
 "tmax_type":"scaling_bigmax",
 "params":["N","M_1",'W_inf','accpol'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -59,7 +59,7 @@ configs = [
 "func_type":"basic",
 "tmax_type":"scaling_bigmax",
 "params":["N","M_1",'W_inf_true','accpol'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 ###### ATC constraints ######
@@ -72,7 +72,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_100","M_100",'W_inf','strat_type_exploexplo','vu_type_minimal'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -84,7 +84,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_100","M_100",'W_inf','strat_type_explobiased'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -96,7 +96,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_100","M_100",'W_inf','strat_type_ST','threshold_param'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -109,7 +109,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_few","M_100",'strat_type_ST','threshold_param'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -121,7 +121,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_few","M_100",'strat_type_ST2','threshold_param'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -133,7 +133,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_100","M_100",'W_inf','strat_type_MC','mincounts_param'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -146,7 +146,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_100","M_100",'W_inf','strat_type_MC','mincounts_param'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -158,7 +158,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_100","M_100",'W_inf','strat_type_infogain','temperature_param'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -171,7 +171,7 @@ configs = [
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
 "params":["N_100","M_100",'W_inf','strat_type_infogain','temperature_param'],
-"metrics_local":["Nlink","srtheo","N_d","nb_inventions",'N_meanings','N_words','actual_successrate'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
