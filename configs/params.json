@@ -26,15 +26,20 @@
 
         "time_scale":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,4,5,6,7,8,9,10,20,30,50],"min":0,"max":30,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "time_scale_few":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
+        "timescale_laps":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[0,1,2,3,5,7,10,20],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
 
         "gamma":{"param_name":"gamma","default_value":0.01,"values":[0.01,1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
 
         "active":{"param_name":"active","default_value":false,"values":[false,true],"short_label":"active"},
 
+        "memory_policy":{"param_name":"memory_policy","default_value":true,"values":[true],"short_label":"memory_policy"},
+        "memory_policy_both":{"param_name":"memory_policy","default_value":false,"values":[false,true],"short_label":"memory_policy"},
+
         "accpol":{"param_name":"accpol","default_value":false,"values":[false,true],"short_label":"acceptance policy"},
 
         "wordchoice":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart"],"short_label":"Word Choice","label":"Word Choice Policy"},
         "wordchoice_2":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart","membased"],"short_label":"Word Choice","label":"Word Choice Policy"},
+        "wordchoice_membased":{"param_name":"wordchoice","default_value":"membased","values":["membased"],"short_label":"Word Choice","label":"Word Choice Policy"},
 
         "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction scenario","label":"Interaction Scenario"},
 
@@ -51,6 +56,7 @@
         "strat_type_ST":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_ST2":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise","success_threshold_wise_max","success_threshold"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_MC":{"param_name":"strat_type","default_value":"naive","values":["naive","mincounts"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_laps":{"param_name":"strat_type","default_value":"naive","values":["naive","lapsmax_mab_explothreshold"],"short_label":"Strategy","label":"Strategy"},
 
         "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},
 

@@ -91,6 +91,63 @@
 
     return base_cfg
 
+###laps###
+
+    base_cfg = {
+          "step": "log_improved",
+          "pop_cfg": {
+            "voc_cfg": {
+          "voc_type": {{% voc_type,'2dictdict' %}},
+            },
+        "strat_cfg": {
+          "vu_cfg": {
+            "vu_type": {{% vu_type,"minimal" %}}
+          },
+          "success_cfg": {
+            "success_type": "global_norandom"
+              },
+          "wordchoice_cfg": {
+            "wordchoice_type": {{% wordchoice,"random" %}}
+              },
+              "strat_type": {{% strat_type,"naive" %}}, #random topic choice: changed if active is True
+            },
+            "nbagent": {{% N,100 %}}, #population size
+            "env_cfg": {
+              "env_type": "simple",
+              "M": {{% M,100 %}}, #number of meanings
+              "W": {{% M,100 %}}  #number of words
+            },
+            "interact_cfg": {
+              "interact_type": {{% interact_type,"speakerschoice" %}}
+            }
+          }
+        }
+    if {{% W_inf,False %}}:
+        base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
+        base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
+    elif {{% W,False %}}:
+        base_cfg['pop_cfg']['env_cfg']['W'] = max({{% W,0 %}},base_cfg['pop_cfg']['env_cfg']['M'])
+    if {{% optimized,False %}}:
+        base_cfg['pop_cfg']['optimized_run'] = True
+    if base_cfg['pop_cfg']['strat_cfg']['strat_type'][:17] == 'success_threshold':
+        base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.9 %}}
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'mincounts':
+        base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.9 %}})
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:27] == 'decision_vector_gainsoftmax':
+        base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.9 %}}
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:7] == 'lapsmax':
+        base_cfg['pop_cfg']['strat_cfg'].update(**{
+                'strat_type':'lapsmax_mab_explothreshold','bandit_type':'bandit_laps','gamma':{{% gamma,0.1 %}},'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
+                      "time_scale": {{% time_scale,2 %}},
+                      "mem_type": "interaction_counts_sliding_window_local"
+                        }], })
+    if {{% memory_policy,False %}} or {{% wordchoice,False %}}=='membased':
+        base_cfg['pop_cfg']['strat_cfg'].update(**{"memory_policies": [{
+                      "time_scale": {{% time_scale,2 %}},
+                      "mem_type": "interaction_counts_sliding_window_local"
+                        }],})
+    return base_cfg
+
 ###classic###
 
     base_cfg = {
