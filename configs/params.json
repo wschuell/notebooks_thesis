@@ -23,6 +23,8 @@
 
         "W_inf":{"param_name":"W_inf","default_value":false,"values":[false,true],"short_label":"W_inf"},
         "W_inf_true":{"param_name":"W_inf","default_value":true,"values":[true],"short_label":"W_inf"},
+        "W_inf_all":{"param_name":"W_inf","default_value":2,"values":[false,2,true],"short_label":"W_inf"},
+        "W_inf_2":{"param_name":"W_inf","default_value":2,"values":[2],"short_label":"W_inf"},
 
         "time_scale":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,4,5,6,7,8,9,10,20,30,50],"min":0,"max":30,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "time_scale_few":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
@@ -57,8 +59,11 @@
         "strat_type_ST2":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise","success_threshold_wise_max","success_threshold"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_MC":{"param_name":"strat_type","default_value":"naive","values":["naive","mincounts"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_laps":{"param_name":"strat_type","default_value":"naive","values":["naive","lapsmax_mab_explothreshold"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_coherence":{"param_name":"strat_type","default_value":"naive","values":["naive","coherence"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_compare_atc":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise","mincounts","decision_vector_gainsoftmax"],"short_label":"Strategy","label":"Strategy"},
 
         "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},
+        "interact_type_hearerschoice":{"param_name":"interact_type","default_value":"hearerschoice","values":["hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},
 
         "voc_type_mat":{"param_name":"voc_type","default_value":"matrix_new","values":["matrix_new"],"short_label":"Voc Type","label":"Vocabulary Type"},
         "voc_type_sparse":{"param_name":"voc_type","default_value":"sparse_new","values":["sparse_new"],"short_label":"Voc Type","label":"Vocabulary Type"},

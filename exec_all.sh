@@ -13,8 +13,20 @@ strings=(
 "chapters/topicchoice/MCN"
 "chapters/topicchoice/IGW"
 "chapters/topicchoice/IGN"
+"chapters/topicchoice/comparison"
+"chapters/topicchoice/comparisonHC"
+"chapters/laps/previous"
+"chapters/laps/normal"
+"chapters/laps/lapsNT"
+"chapters/laps/lapsNTimitation"
+"chapters/laps/NMB_NT"
+"chapters/laps/lapsscaling"
+"chapters/laps/lapsscaling_MB"
+"chapters/laps/coherenceNT"
+"chapters/laps/coherenceNTimitation"
+"chapters/laps/coherenceWT"
+"chapters/laps/coherencescaling"
+"chapters/laps/coherencescaling_MB"
 )
-for folder in "${strings[@]}"; do
-    echo "$folder"
-    (cd $folder && hd_metaexp ) || (echo "$folder"; exit 1 ) || exit 1
-done
+
+parallel bash exec_one.sh ::: ${strings[@]}
