@@ -93,12 +93,14 @@ savefig(p2,'scaling_VU_Nmax',plot_mode='half')
 
 #######chapters/naminggame/accpol#######
 
-p = meta_exp.plot('srtheo',accpol='all',get_object=True)
-#p.xmax = 4000
+p = meta_exp.plot('srtheo',accpol='all',get_object=True,N=1000)
+p.xmax = 1.5*10**5
+p.std_mode='minmax'
 savefig(p,'srtheo_accpol')
 
-p = meta_exp.plot('Nlink',accpol='all',get_object=True)
-#p.xmax = 4000
+p = meta_exp.plot('Nlink',accpol='all',get_object=True,N=1000)
+p.xmax = 1.5*10**5
+p.std_mode='minmax'
 savefig(p,'Nlink_accpol')
 
 p = meta_exp.plot_against(measure='conv_time',token='N',accpol='all',get_object=True)
@@ -140,3 +142,53 @@ p.ymin = 1
 #p.title = ''
 p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True,xmin=[100,10])
 savefig(p2,'scaling_wordchoice_Nmax',plot_mode='half')
+
+#######chapters/topicchoice/exploexplo#######
+
+p = meta_exp.plot('srtheo',strat_type='only_exploit',get_object=True)
+p.xmax = 1.5*10**5
+#p.std_mode='minmax'
+savefig(p,'srtheo_blocked')
+
+#######chapters/topicchoice/STN#######
+
+for NN,ym in zip(meta_exp.params['N']['values'],[50000,10**7,10**7]):
+    p = meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type='all',N=NN,get_object=True)
+    p.ymax = ym
+    p.xmax=1.
+    savefig(p,'srtheo_STN_'+str(NN))
+
+#######chapters/topicchoice/STW#######
+
+p = meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type='naive',W_inf=[True],get_object=True)
+p.add_graph(meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type='success_threshold_wise',W_inf=[True,2,False],get_object=True))
+p.ymax = 10**7
+p.xmax=1.
+savefig(p,'srtheo_STW')
+
+#######chapters/topicchoice/ST2#######
+
+p = meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type=['naive','success_threshold_wise','success_threshold'],N=100,get_object=True)
+p.ymax = 10**7
+p.xmax=1.
+savefig(p,'convtime_ST2')
+
+#######chapters/topicchoice/comparison#######
+
+p = meta_exp.plot_against(measure='conv_time',token='N',strat_type='all',get_object=True)
+p.xmin = 10
+p.ymin = 1
+plot_settings()
+#p.title = ''
+p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True)
+savefig(p,'memconstr_comparison')
+
+#######chapters/topicchoice/comparison_HC#######
+
+p = meta_exp.plot_against(measure='conv_time',token='N',strat_type='all',get_object=True)
+p.xmin = 10
+p.ymin = 1
+plot_settings()
+#p.title = ''
+p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True)
+savefig(p,'memconstr_comparisonHC')

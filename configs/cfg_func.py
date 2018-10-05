@@ -30,9 +30,9 @@
             }
           }
         }
-    if {{% W_inf,2 %}}:
-        if not isinstance({{% W_inf,2 %}},bool):
-            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,2 %}}
+    if {{% W_inf,True %}}:
+        if not isinstance({{% W_inf,True %}},bool):
+            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
             base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
@@ -76,9 +76,9 @@
             }
           }
         }
-    if {{% W_inf,2 %}}:
-        if not isinstance({{% W_inf,2 %}},bool):
-            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,2 %}}
+    if {{% W_inf,True %}}:
+        if not isinstance({{% W_inf,True %}},bool):
+            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
             base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
@@ -128,9 +128,9 @@
             }
           }
         }
-    if {{% W_inf,2 %}}:
-        if not isinstance({{% W_inf,2 %}},bool):
-            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,2 %}}
+    if {{% W_inf,True %}}:
+        if not isinstance({{% W_inf,True %}},bool):
+            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
             base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
@@ -146,13 +146,13 @@
         base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.9 %}}
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:7] == 'lapsmax':
         base_cfg['pop_cfg']['strat_cfg'].update(**{
-                'strat_type':'lapsmax_mab_explothreshold','bandit_type':'bandit_laps','gamma':{{% gamma,0.1 %}},'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
+                'bandit_type':'bandit_laps','gamma':{{% gamma,0.01 %}},'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
                       "time_scale": {{% time_scale,2 %}},
                       "mem_type": "interaction_counts_sliding_window_local"
                         }], })
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'coherence':
         base_cfg['pop_cfg']['strat_cfg'].update(**{
-                'strat_type':'coherence','time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
+                'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
                       "time_scale": {{% time_scale,2 %}},
                       "mem_type": "interaction_counts_sliding_window_local"
                         }], })
@@ -196,16 +196,16 @@
         }
     if {{% active,True %}}:
         base_cfg['pop_cfg']['strat_cfg'].update(**{
-                'strat_type':'lapsmax_mab_explothreshold','bandit_type':'bandit_laps','gamma':{{% gamma,0.1 %}},'time_scale':{{% time_scale,2 %}},
+                'strat_type':'lapsmax_mab_explothreshold','bandit_type':'bandit_laps','gamma':{{% gamma,0.01 %}},'time_scale':{{% time_scale,2 %}},
                 "memory_policies": [{
                       "time_scale": {{% time_scale,2 %}},
                       "mem_type": "interaction_counts_sliding_window_local"
                         }], })
     if base_cfg['pop_cfg']['nbagent'] > 100 and base_cfg['pop_cfg']['env_cfg']['M'] > 100:
         base_cfg['pop_cfg']['env_cfg']['M'] = 100
-    if {{% W_inf,2 %}}:
-        if not isinstance({{% W_inf,2 %}},bool):
-            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,2 %}}
+    if {{% W_inf,True %}}:
+        if not isinstance({{% W_inf,True %}},bool):
+            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
             base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
@@ -251,9 +251,9 @@
         base_cfg['pop_cfg']['env_cfg']['M'] = 100
     if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'hearerschoice' and base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax':
         base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax_hearer'
-    if {{% W_inf,2 %}}:
-        if not isinstance({{% W_inf,2 %}},bool):
-            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,2 %}}
+    if {{% W_inf,True %}}:
+        if not isinstance({{% W_inf,True %}},bool):
+            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
             base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
@@ -304,9 +304,9 @@
                         }],})
     if base_cfg['pop_cfg']['nbagent'] > 100 and base_cfg['pop_cfg']['env_cfg']['M'] > 100:
         base_cfg['pop_cfg']['env_cfg']['M'] = 100
-    if {{% W_inf,2 %}}:
-        if not isinstance({{% W_inf,2 %}},bool):
-            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,2 %}}
+    if {{% W_inf,True %}}:
+        if not isinstance({{% W_inf,True %}},bool):
+            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
             base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
