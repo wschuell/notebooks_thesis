@@ -77,14 +77,14 @@ p = meta_exp.plot('Nlink',vu_type='all',get_object=True)
 p.xmax = 6*10**4
 savefig(p,'NlinkVU')
 
-p = meta_exp.plot_against(measure='conv_time',token='N',wordchoice='all',get_object=True)
+p = meta_exp.plot_against(measure='conv_time',token='N',vu_type='all',get_object=True)
 p.xmin = 10
 p.ymin = 1
 #p.title = ''
 p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True)
 savefig(p2,'scaling_VU_conv',plot_mode='half')
 
-p = meta_exp.plot_against(measure='max_mem',token='N',wordchoice='all',get_object=True)
+p = meta_exp.plot_against(measure='max_mem',token='N',vu_type='all',get_object=True)
 p.xmin = 10
 p.ymin = 1
 #p.title = ''

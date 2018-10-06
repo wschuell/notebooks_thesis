@@ -1,5 +1,6 @@
 {       "N_old":{"param_name":"N","default_value":40,"label":"population size","values":[40],"min":0,"short_label":"N"},
         "N_few":{"param_name":"N","default_value":100,"label":"population size","values":[10,100,1000],"min":0,"short_label":"N"},
+        "N_few_imit":{"param_name":"N","default_value":100,"label":"population size","values":[10,100,200],"min":0,"short_label":"N"},
         "N_few_bis":{"param_name":"N","default_value":40,"label":"population size","values":[20,40],"min":0,"short_label":"N"},
         "N":{"param_name":"N","default_value":100,"label":"population size","values":[10,20,50,100,200,500,1000],"min":0,"short_label":"N"},
         "N_all1000":{"param_name":"N","default_value":40,"label":"population size","values":[10,20,30,40,50,70,100,200,500,1000],"min":0,"short_label":"N"},
@@ -31,6 +32,7 @@
         "timescale_laps":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[0,1,2,3,5,7,10,20],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
 
         "gamma":{"param_name":"gamma","default_value":0.01,"values":[0.01,1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
+        "gamma_1":{"param_name":"gamma","default_value":1.0,"values":[1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
 
         "active":{"param_name":"active","default_value":false,"values":[false,true],"short_label":"active"},
 
@@ -55,12 +57,15 @@
         "strat_type_exploexplo":{"param_name":"strat_type","default_value":"naive","values":["naive","only_explore","only_exploit"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_explobiased":{"param_name":"strat_type","default_value":"naive","values":["naive","naive_explobiased"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_infogain":{"param_name":"strat_type","default_value":"naive","values":["naive","decision_vector_gainsoftmax"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_chunks":{"param_name":"strat_type","default_value":"naive","values":["naive","decision_vector_chunks"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_ST":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_ST2":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise","success_threshold_wise_max","success_threshold"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_MC":{"param_name":"strat_type","default_value":"naive","values":["naive","mincounts"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_MC2":{"param_name":"strat_type","default_value":"naive","values":["naive","mincounts","mincounts_basic"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_laps":{"param_name":"strat_type","default_value":"naive","values":["naive","lapsmax_mab_explothreshold"],"short_label":"Strategy","label":"Strategy"},
-        "strat_type_coherence":{"param_name":"strat_type","default_value":"naive","values":["naive","coherence"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_coherence":{"param_name":"strat_type","default_value":"naive","values":["naive","coherence_last"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_compare_atc":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise","mincounts","decision_vector_gainsoftmax"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_entropy":{"param_name":"strat_type","default_value":"naive","values":["naive","negentropymax_mab_explothreshold"],"short_label":"Strategy","label":"Strategy"},
 
         "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},
         "interact_type_hearerschoice":{"param_name":"interact_type","default_value":"hearerschoice","values":["hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},
@@ -69,9 +74,10 @@
         "voc_type_sparse":{"param_name":"voc_type","default_value":"sparse_new","values":["sparse_new"],"short_label":"Voc Type","label":"Vocabulary Type"},
         "voc_type_2dd":{"param_name":"voc_type","default_value":"2dictdict","values":["2dictdict"],"short_label":"Voc Type","label":"Vocabulary Type"},
 
-        "threshold_param":{"param_name":"threshold_param","default_value":0.9,"label":"threshold parameter","values":[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],"min":0,"max":30,"short_label":"threshold","unit_label":""},
-        "mincounts_param":{"param_name":"mincounts_param","default_value":0.9,"label":"mincounts parameter","values":[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],"min":0,"max":30,"short_label":"mincounts","unit_label":""},
-        "temperature_param":{"param_name":"temp_param","default_value":0.9,"label":"temperature parameter","values":[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],"min":0,"max":30,"short_label":"temperature","unit_label":""},
+        "threshold_param":{"param_name":"threshold_param","default_value":0.9,"label":"threshold parameter","values":[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],"min":0,"max":1,"short_label":"threshold","unit_label":""},
+        "mincounts_param":{"param_name":"mincounts_param","default_value":0.9,"label":"mincounts parameter","values":[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],"min":0,"max":1,"short_label":"mincounts","unit_label":""},
+        "temperature_param":{"param_name":"temp_param","default_value":0.9,"label":"temperature parameter","values":[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],"min":0,"max":1,"short_label":"temperature","unit_label":""},
+        "chunks_param":{"param_name":"temp_param","default_value":0.1,"label":"temperature parameter","values":[0,0.0001,0.001,0.01,0.1],"min":0,"max":1,"short_label":"temperature","unit_label":""},
 
 
 

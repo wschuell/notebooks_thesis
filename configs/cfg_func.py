@@ -90,10 +90,12 @@
         base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.9 %}}
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'mincounts':
         base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.9 %}})
-    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:27] == 'decision_vector_gainsoftmax':
-        base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.9 %}}
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:16] == 'decision_vector_':
+        base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.1 %}}
     if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'hearerschoice' and base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax':
         base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax_hearer'
+    if base_cfg['pop_cfg']['strat_cfg']['strat_type'][-6:] == 'chunks':
+        base_cfg['pop_cfg']['strat_cfg']['N'] = {{% N,100 %}}
 
     return base_cfg
 
@@ -146,7 +148,7 @@
         base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.9 %}}
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:7] == 'lapsmax':
         base_cfg['pop_cfg']['strat_cfg'].update(**{
-                'bandit_type':'bandit_laps','gamma':{{% gamma,0.01 %}},'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
+                'gamma':{{% gamma,0.01 %}},'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
                       "time_scale": {{% time_scale,2 %}},
                       "mem_type": "interaction_counts_sliding_window_local"
                         }], })

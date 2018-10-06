@@ -18,7 +18,7 @@
             "nb_inventions_per_agent":{"unit_label":"#inventions","label":"Average inventions per agent"},
 
 
-            "entropy_extrapol":{"unit_label":"$E(t)$","label":"Entropy"},
+            "entropy_final":{"unit_label":"$E(t)$","label":"Entropy"},
             "srtheo_local":{"unit_label":"$S_{LAPS}(t)$","label":"Local Approximated Probability of Success"},
 
 
