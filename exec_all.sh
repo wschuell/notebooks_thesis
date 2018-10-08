@@ -1,5 +1,7 @@
 set -e
 
+configs_gen
+
 strings=(
 "chapters/naminggame/normal"
 "chapters/naminggame/VU"
@@ -15,25 +17,27 @@ strings=(
 "chapters/topicchoice/MCW"
 "chapters/topicchoice/MCN"
 "chapters/topicchoice/MC2"
+"chapters/topicchoice/MC_HC"
 "chapters/topicchoice/IGW"
 "chapters/topicchoice/IGN"
 "chapters/topicchoice/chunksW"
 "chapters/topicchoice/chunksN"
-# # "chapters/topicchoice/comparison"
-# # "chapters/topicchoice/comparisonHC"
-# "chapters/laps/previous"
-# "chapters/laps/normal"
-# "chapters/laps/lapsWT"
-# "chapters/laps/lapsNT"
-# "chapters/laps/lapsT2"
-# "chapters/laps/entropyWT"
-# "chapters/laps/entropyNT"
-# "chapters/laps/entropyT2"
+"chapters/topicchoice/chunks_HC"
+"chapters/topicchoice/comparison"
+"chapters/topicchoice/comparisonHC"
+"chapters/laps/previous"
+"chapters/laps/normal"
+"chapters/laps/lapsWT"
+"chapters/laps/lapsNT"
+"chapters/laps/lapsT2"
+"chapters/laps/entropyWT"
+"chapters/laps/entropyNT"
+"chapters/laps/entropyT2"
 # # "chapters/laps/lapsscaling"
-# "chapters/laps/coherenceWT"
-# "chapters/laps/coherenceNT"
-# "chapters/laps/coherenceT2"
+"chapters/laps/coherenceWT"
+"chapters/laps/coherenceNT"
+"chapters/laps/coherenceT2"
 # # "chapters/laps/coherencescaling"
 )
 
-parallel --jobs 0 bash exec_one.sh ::: ${strings[@]}
+parallel --jobs 8 bash exec_one.sh ::: ${strings[@]}

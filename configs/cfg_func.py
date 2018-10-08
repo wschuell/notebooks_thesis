@@ -87,11 +87,20 @@
     if {{% optimized,False %}}:
         base_cfg['pop_cfg']['optimized_run'] = True
     if base_cfg['pop_cfg']['strat_cfg']['strat_type'][:17] == 'success_threshold':
-        base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.9 %}}
+        if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
+            base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.8 %}}
+        else:
+            base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.2 %}}
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'mincounts':
-        base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.9 %}})
+        if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
+            base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.6 %}})
+        else:
+            base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.2 %}})
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:16] == 'decision_vector_':
-        base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.1 %}}
+        if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
+            base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.001 %}}
+        else:
+            base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.001 %}}
     if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'hearerschoice' and base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax':
         base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax_hearer'
     if base_cfg['pop_cfg']['strat_cfg']['strat_type'][-6:] == 'chunks':

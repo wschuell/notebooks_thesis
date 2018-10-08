@@ -1,3 +1,3 @@
 #!/bin/bash
 
-(cd chapters && find . -name '*.ipynb' -exec cp --parents {} ../../notebook_thesis/chapters/ \;)
+(cd chapters && find . -name '*.ipynb' -exec cp --parents -t ../../chapters/ '{}' \;)
