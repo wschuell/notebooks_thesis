@@ -8,6 +8,7 @@
         "N_halfline":{"param_name":"N","default_value":1000,"label":"population size","values":[1000],"min":0,"short_label":"N"},
         "N_record":{"param_name":"N","default_value":100000,"label":"population size","values":[100000],"min":0,"short_label":"N"},
         "N_100":{"param_name":"N","default_value":100,"label":"population size","values":[100],"min":0,"short_label":"N"},
+        "N_1000":{"param_name":"N","default_value":1000,"label":"population size","values":[1000],"min":0,"short_label":"N"},
 
         "M":{"param_name":"M","default_value":100,"label":"#meanings","values":[1,10,100],"min":0,"short_label":"M"},
         "M_1":{"param_name":"M","default_value":1,"label":"#meanings","values":[1],"min":0,"short_label":"M"},
@@ -18,6 +19,7 @@
         "M_few_low":{"param_name":"M","default_value":10,"label":"#meanings","values":[1,2,3,5,7,10],"min":0,"short_label":"M"},
         "M_all100":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100],"min":0,"short_label":"M"},
         "M_all1000":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100,200,500,1000],"min":0,"short_label":"M"},
+        "M_scale":{"param_name":"M","default_value":10,"label":"#meanings","values":[1,2,5,10,20,50,100],"min":0,"short_label":"M"},
 
         "W":{"param_name":"W","default_value":40,"label":"#words","values":[40],"min":0,"short_label":"W"},
         "Wscale":{"param_name":"W","default_value":100,"label":"#words","values":[10,100,1000,10000],"min":0,"short_label":"W"},
@@ -30,16 +32,26 @@
         "time_scale":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,4,5,6,7,8,9,10,20,30,50],"min":0,"max":30,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "time_scale_few":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "timescale_laps":{"param_name":"time_scale","default_value":2,"label":"time scale","values":[0,1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
+        "timescale_laps_20":{"param_name":"time_scale","default_value":2,"label":"time scale","values":[0,1,2,3,5,7,10,20],"min":0,"max":20,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
+        "timescale_laps_all":{"param_name":"time_scale","default_value":2,"label":"time scale","values":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"min":0,"max":15,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
 
         "gamma":{"param_name":"gamma","default_value":0.01,"values":[0.01,1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
         "gamma_1":{"param_name":"gamma","default_value":1.0,"values":[1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
 
         "active":{"param_name":"active","default_value":false,"values":[false,true],"short_label":"active"},
 
+        "agent_init":{"param_name":"agent_init","default_value":"agent_init","values":["agent_init"],"short_label":"agent init"},
+        "agent_init_converged":{"param_name":"agent_init","default_value":"converged","values":["converged"],"short_label":"agent init"},
+
         "memory_policy":{"param_name":"memory_policy","default_value":true,"values":[true],"short_label":"memory_policy"},
         "memory_policy_both":{"param_name":"memory_policy","default_value":false,"values":[false,true],"short_label":"memory_policy"},
 
         "accpol":{"param_name":"accpol","default_value":false,"values":[false,true],"short_label":"acceptance policy"},
+        "accpol_replace":{"param_name":"accpol","default_value":false,"values":[false,"acceptance_beta","acceptance_tsmax_new"],"short_label":"acceptance policy"},
+        "accpol_replace_beta":{"param_name":"accpol","default_value":"acceptance_beta","values":["acceptance_beta"],"short_label":"acceptance policy"},
+        "accpol_replace_beta_false":{"param_name":"accpol","default_value":false,"values":[false,"acceptance_beta"],"short_label":"acceptance policy"},
+        "accpol_replace_laps_false":{"param_name":"accpol","default_value":false,"values":[false,"acceptance_tsmax_new"],"short_label":"acceptance policy"},
+        "accpol_replace_laps":{"param_name":"accpol","default_value":"acceptance_tsmax_new","values":["acceptance_tsmax_new"],"short_label":"acceptance policy"},
 
         "wordchoice":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart"],"short_label":"Word Choice","label":"Word Choice Policy"},
         "wordchoice_2":{"param_name":"wordchoice","default_value":"random","values":["random","play_smart","membased"],"short_label":"Word Choice","label":"Word Choice Policy"},
@@ -83,7 +95,7 @@
         "temperature_param":{"param_name":"temp_param","default_value":0.9,"label":"temperature parameter","values":[0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1],"min":0,"max":1,"short_label":"temperature","unit_label":""},
         "chunks_param":{"param_name":"temp_param","default_value":0.1,"label":"temperature parameter","values":[0,0.0001,0.001,0.01,0.1],"min":0,"max":1,"short_label":"temperature","unit_label":""},
 
-
+        "rate_replace":{"param_name":"rate","min":0,"values":[10,20,30,50,70,100,200,300,500,700,1000]},
 
 
         "optimized_true":{"param_name":"optimized","default_value":true,"values":[true],"short_label":"Optimized","label":"Optimized"}

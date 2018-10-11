@@ -174,6 +174,88 @@
                         }],})
     return base_cfg
 
+###replace###
+
+    base_cfg = {
+          "step": "log_improved",
+          "pop_cfg": {
+            "voc_cfg": {
+          "voc_type": {{% voc_type,'2dictdict' %}},
+            },
+        "strat_cfg": {
+          "vu_cfg": {
+            "vu_type": {{% vu_type,"minimal" %}}
+          },
+          "success_cfg": {
+            "success_type": "global_norandom"
+              },
+          "wordchoice_cfg": {
+            "wordchoice_type": {{% wordchoice,"random" %}}
+              },
+              "strat_type": {{% strat_type,"naive" %}}, #random topic choice: changed if active is True
+            },
+            "nbagent": {{% N,100 %}}, #population size
+            "env_cfg": {
+              "env_type": "simple",
+              "M": {{% M,100 %}}, #number of meanings
+              "W": {{% M,100 %}}  #number of words
+            },
+            "interact_cfg": {
+              "interact_type": {{% interact_type,"speakerschoice" %}}
+            },
+              "evolution_cfg":{
+                  "evolution_type":"replace",
+                  "rate":{{% rate,200 %}},
+              },
+              "agent_init_cfg":{
+                  "agent_init_type":{{% agent_init,"agent_init" %}},
+              }
+          }
+        }
+    if {{% W_inf,True %}}:
+        if not isinstance({{% W_inf,True %}},bool):
+            base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
+        else:
+            base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
+            base_cfg['pop_cfg']['agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
+    elif {{% W,False %}}:
+        base_cfg['pop_cfg']['env_cfg']['W'] = max({{% W,0 %}},base_cfg['pop_cfg']['env_cfg']['M'])
+    if {{% optimized,False %}}:
+        base_cfg['pop_cfg']['optimized_run'] = True
+    if base_cfg['pop_cfg']['strat_cfg']['strat_type'][:17] == 'success_threshold':
+        base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.9 %}}
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'mincounts':
+        base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.9 %}})
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:27] == 'decision_vector_gainsoftmax':
+        base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.9 %}}
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:7] == 'lapsmax':
+        base_cfg['pop_cfg']['strat_cfg'].update(**{
+                'gamma':{{% gamma,0.01 %}},'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
+                      "time_scale": {{% time_scale,2 %}},
+                      "mem_type": "interaction_counts_sliding_window_local"
+                        }], })
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'coherence':
+        base_cfg['pop_cfg']['strat_cfg'].update(**{
+                'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
+                      "time_scale": {{% time_scale,2 %}},
+                      "mem_type": "interaction_counts_sliding_window_local"
+                        }], })
+    if {{% memory_policy,False %}} or {{% wordchoice,False %}}=='membased':
+        base_cfg['pop_cfg']['strat_cfg'].update(**{"memory_policies": [{
+                      "time_scale": {{% time_scale,2 %}},
+                      "mem_type": "interaction_counts_sliding_window_local"
+                        }],})
+    if {{% accpol,False %}}:
+        base_cfg['pop_cfg']['strat_cfg']['vu_cfg'] = {'vu_type':{{% 'acceptance_beta',accpol %}},'subvu_cfg':{'vu_type':{{% vu_type,'minimal' %}}}}
+        if {{% accpol,False %}} == 'acceptance_beta' :
+            base_cfg['pop_cfg']['strat_cfg']['vu_cfg']['beta']= {{% beta,0.3 %}}
+        elif {{% accpol,False %}} == 'acceptance_tsmax_new' :
+            if base_cfg['pop_cfg']['strat_cfg']['strat_type'][:7] in ['coheren','lapsmax']:
+                base_cfg['pop_cfg']['strat_cfg']['vu_cfg']['no_mp'] = True
+            else:
+                base_cfg['pop_cfg']['strat_cfg']['vu_cfg']['mem_policy'] = { 'mem_type':'interaction_counts_sliding_window_local','time_scale':{{% time_scale,2 %}} }
+    return base_cfg
+
 ###classic###
 
     base_cfg = {

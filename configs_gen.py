@@ -272,6 +272,18 @@ configs = [
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
+{"folder":"chapters/topicchoice/comparisonM",
+"imports":["import naminggamesal as ngal"],
+"nbiter":8,
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"ATC",
+"tmax_type":"scaling_bigmax",
+"params":["N_100","M_scale",'strat_type_compare_atc'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
+"metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
+},
+
 
 ###### LAPS ######
 
@@ -323,6 +335,18 @@ configs = [
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
+{"folder":"chapters/laps/lapsHC",
+"imports":["import naminggamesal as ngal"],
+"nbiter":8,
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"laps",
+"tmax_type":"scaling_bigmax",
+"params":["N_100","M_100","strat_type_laps",'timescale_laps'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local'],#'entropy_extrapol',
+"metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
+},
+
 {"folder":"chapters/laps/lapsT2",
 "imports":["import naminggamesal as ngal"],
 "nbiter":8,
@@ -330,7 +354,7 @@ configs = [
 "plt_settings":"classic",
 "func_type":"laps",
 "tmax_type":"scaling_bigmax",
-"params":["N_100","M_100","strat_type_laps2",'timescale_laps','gamma'],
+"params":["N_100","M_100","strat_type_laps",'timescale_laps','gamma'],
 "metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local'],#'entropy_extrapol',
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
@@ -366,7 +390,7 @@ configs = [
 "plt_settings":"classic",
 "func_type":"laps",
 "tmax_type":"scaling_bigmax",
-"params":["N_100","M_100","strat_type_entropy2",'timescale_laps','gamma'],
+"params":["N_100","M_100","strat_type_entropy",'timescale_laps','gamma'],
 "metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local','entropy_final'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
@@ -450,7 +474,7 @@ configs = [
 "plt_settings":"classic",
 "func_type":"laps",
 "tmax_type":"scaling_bigmax",
-"params":["N_few","M_100","strat_type_coherence",'timescale_laps'],
+"params":["N","M_100","strat_type_coherence",'timescale_laps_all'],
 "metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local'],#'entropy_extrapol',
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
@@ -501,6 +525,37 @@ configs = [
 # "metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local'],#'entropy_extrapol',
 # "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 # },
+
+
+
+###### replace ######
+
+{"folder":"chapters/replace/replace",
+"imports":["import naminggamesal as ngal"],
+"nbiter":8,
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"replace",
+"tmax_type":"scaling_bigmax",
+"params":["N_100","M_100","rate_replace","accpol_replace"],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local'],#'entropy_extrapol',
+"metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',"srtheo_end","srtheo_end_smooth"],
+},
+
+{"folder":"chapters/replace/decay",
+"imports":["import naminggamesal as ngal"],
+"nbiter":8,
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"replace",
+"tmax_type":"scaling_bigmax",
+"params":["N_100","M_100","rate_replace","accpol_replace","agent_init_converged"],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local','decay_coherence'],#'entropy_extrapol',
+"metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',"srtheo_end","srtheo_end_smooth",'decay_time','decay_time_total'],
+},
+
+
+
 ]
 
 
