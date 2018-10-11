@@ -474,7 +474,7 @@ configs = [
 "plt_settings":"classic",
 "func_type":"laps",
 "tmax_type":"scaling_bigmax",
-"params":["N","M_100","strat_type_coherence",'timescale_laps_all'],
+"params":["N","M_10_100","strat_type_coherence",'timescale_laps_coher'],
 "metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local'],#'entropy_extrapol',
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },

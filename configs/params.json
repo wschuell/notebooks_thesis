@@ -16,6 +16,7 @@
         "M_1_10":{"param_name":"M","default_value":1,"label":"#meanings","values":[1,10],"min":0,"short_label":"M"},
         "M_basic":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40],"min":0,"short_label":"M"},
         "M_100":{"param_name":"M","default_value":100,"label":"#meanings","values":[100],"min":0,"short_label":"M"},
+        "M_10_100":{"param_name":"M","default_value":100,"label":"#meanings","values":[10,100],"min":0,"short_label":"M"},
         "M_few_low":{"param_name":"M","default_value":10,"label":"#meanings","values":[1,2,3,5,7,10],"min":0,"short_label":"M"},
         "M_all100":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100],"min":0,"short_label":"M"},
         "M_all1000":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100,200,500,1000],"min":0,"short_label":"M"},
@@ -33,7 +34,7 @@
         "time_scale_few":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "timescale_laps":{"param_name":"time_scale","default_value":2,"label":"time scale","values":[0,1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "timescale_laps_20":{"param_name":"time_scale","default_value":2,"label":"time scale","values":[0,1,2,3,5,7,10,20],"min":0,"max":20,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
-        "timescale_laps_all":{"param_name":"time_scale","default_value":2,"label":"time scale","values":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"min":0,"max":15,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
+        "timescale_laps_coher":{"param_name":"time_scale","default_value":2,"label":"time scale","values":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"min":0,"max":15,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
 
         "gamma":{"param_name":"gamma","default_value":0.01,"values":[0.01,1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},
         "gamma_1":{"param_name":"gamma","default_value":1.0,"values":[1.0],"min":0,"max":1.0,"short_label":"$\\gamma$","label":"exploration coefficient"},

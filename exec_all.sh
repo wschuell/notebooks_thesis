@@ -40,6 +40,8 @@ strings=(
 "chapters/laps/coherenceNT"
 "chapters/laps/coherenceT2"
 # # "chapters/laps/coherencescaling"
+"chapters/replace/replace"
+"chapters/replace/decay"
 )
 
 parallel --jobs 8 bash exec_one.sh ::: ${strings[@]}
