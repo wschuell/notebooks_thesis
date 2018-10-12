@@ -1,4 +1,5 @@
 {           "srtheo":{"unit_label":"$S(t)$","label":"Theoretical Communicative Success"},
+            "converged":{"unit_label":"$C(t)$","label":"Converged criteria"},
             "decay_coherence":{"unit_label":"$D(t)$","label":"Decay Coherence"},
             "actual_successrate":{"unit_label":"$S_a(t)$","label":"Observed Communicative Success"},
             "Nlink":{"unit_label":"$N_l(t)$","label":"Local Complexity"},
@@ -35,6 +36,7 @@
 
             "conv_time":{"unit_label":"$t_{conv}$","label":"Convergence Time"},
             "conv_time2":{"unit_label":"$t_{conv}$","label":"Convergence Time"},
+            "conv_time3":{"unit_label":"$t_{conv}$","label":"Convergence Time"},
             "srtheo_end":{"unit_label":"$S_{end}$","label":"End TCS value"},
             "srtheo_end_smooth":{"unit_label":"$S_{end}$","label":"End TCS value"},
             "decay_time":{"unit_label":"$t_{decay}$","label":"Decay Time"},

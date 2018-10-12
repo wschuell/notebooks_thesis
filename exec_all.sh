@@ -34,14 +34,15 @@ strings=(
 "chapters/laps/lapsT2"
 "chapters/laps/entropyWT"
 "chapters/laps/entropyNT"
-"chapters/laps/entropyT2"
-# # "chapters/laps/lapsscaling"
+# "chapters/laps/entropyT2"
+"chapters/laps/lapsscaling"
 "chapters/laps/coherenceWT"
 "chapters/laps/coherenceNT"
 "chapters/laps/coherenceT2"
 # # "chapters/laps/coherencescaling"
 "chapters/replace/replace"
 "chapters/replace/decay"
+"chapters/theory/tconv_100"
 )
 
 parallel --jobs 8 bash exec_one.sh ::: ${strings[@]}
