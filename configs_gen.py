@@ -276,8 +276,8 @@ configs = [
 "plt_settings":"classic",
 "func_type":"ATC",
 "tmax_type":"scaling_bigmax",
-"params":["N","M_100",'strat_type_compare_atc'],
-"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','vu_type_imit_minimal'],
+"params":["N","M_100",'strat_type_compare_atc','vu_type_imit_minimal'],
+"metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
 
@@ -598,6 +598,7 @@ configs = [
 "nbiter":20,
 "additional_metrics":"classic",
 "exec_type":"avakas",
+"stop_on":"converged",
 "plt_settings":"classic",
 "func_type":"theory",
 "tmax_type":"scaling_100",
