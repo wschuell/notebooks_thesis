@@ -150,11 +150,20 @@
     if {{% optimized,False %}}:
         base_cfg['pop_cfg']['optimized_run'] = True
     if base_cfg['pop_cfg']['strat_cfg']['strat_type'][:17] == 'success_threshold':
-        base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.9 %}}
+        if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
+            base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.8 %}}
+        else:
+            base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.2 %}}
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'mincounts':
-        base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.9 %}})
-    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:27] == 'decision_vector_gainsoftmax':
-        base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.9 %}}
+        if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
+            base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.6 %}})
+        else:
+            base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.2 %}})
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:16] == 'decision_vector_':
+        if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
+            base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.001 %}}
+        else:
+            base_cfg['pop_cfg']['strat_cfg']['Temp'] = {{% temp_param,0.001 %}}
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:7] == 'lapsmax':
         base_cfg['pop_cfg']['strat_cfg'].update(**{
                 'gamma':{{% gamma,0.01 %}},'time_scale':{{% time_scale,2 %}},                  "memory_policies": [{
@@ -171,11 +180,19 @@
                       "time_scale": time_scale,
                       "mem_type": "interaction_counts_sliding_window_local"
                         }], })
+    elif base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'naive_smart':
+        base_cfg['pop_cfg']['strat_cfg']['strat_type'] = 'naive'
+        base_cfg['pop_cfg']['strat_cfg']['wordchoice_cfg'] = {'wordchoice_type':'play_smart'}
     if {{% memory_policy,False %}} or {{% wordchoice,False %}}=='membased':
         base_cfg['pop_cfg']['strat_cfg'].update(**{"memory_policies": [{
                       "time_scale": {{% time_scale,2 %}},
                       "mem_type": "interaction_counts_sliding_window_local"
                         }],})
+
+    if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'hearerschoice' and base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax':
+        base_cfg['pop_cfg']['strat_cfg']['strat_type'] == 'decision_vector_gainsoftmax_hearer'
+    if base_cfg['pop_cfg']['strat_cfg']['strat_type'][-6:] == 'chunks':
+        base_cfg['pop_cfg']['strat_cfg']['N'] = {{% N,100 %}}
     return base_cfg
 
 ###replace###
@@ -221,7 +238,8 @@
             base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
-            base_cfg['pop_cfg']['agent_init_cfg']['sub_agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
+            if not {{% agent_init,True %}}:
+                base_cfg['pop_cfg']['agent_init_cfg']['sub_agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
     elif {{% W,False %}}:
         base_cfg['pop_cfg']['env_cfg']['W'] = max({{% W,0 %}},base_cfg['pop_cfg']['env_cfg']['M'])
     if {{% optimized,False %}}:

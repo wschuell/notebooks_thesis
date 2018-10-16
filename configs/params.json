@@ -83,6 +83,7 @@
         "strat_type_coherence2":{"param_name":"strat_type","default_value":"naive","values":["naive","coherence_last","coherence_last_only1stlevel"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_compare_atc":{"param_name":"strat_type","default_value":"naive","values":["naive","success_threshold_wise","mincounts","decision_vector_chunks"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_compare_laps":{"param_name":"strat_type","default_value":"naive","values":["naive","lapsmax_mab_explothreshold","negentropymax_mab_explothreshold","coherence_last"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_compare_perf":{"param_name":"strat_type","default_value":"naive","values":["naive","naive_smart","lapsmax_mab_explothreshold","negentropymax_mab_explothreshold","coherence_last","success_threshold_wise","mincounts"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_entropy":{"param_name":"strat_type","default_value":"naive","values":["naive","negentropymax_mab_explothreshold"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_entropy2":{"param_name":"strat_type","default_value":"naive","values":["naive","negentropymax_mab_explothreshold","negentropymax_mab_explothreshold_only2ndlevel"],"short_label":"Strategy","label":"Strategy"},
 

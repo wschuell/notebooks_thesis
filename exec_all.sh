@@ -43,6 +43,7 @@ strings=(
 "chapters/replace/replace"
 "chapters/replace/decay"
 "chapters/theory/tconv_100"
+"chapters/theory/perf"
 )
 
 parallel --jobs 8 bash exec_one.sh ::: ${strings[@]}
