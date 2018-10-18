@@ -1,7 +1,7 @@
 {           "srtheo":{"unit_label":"$S(t)$","label":"Theoretical Communicative Success"},
             "converged":{"unit_label":"$C(t)$","label":"Converged criteria"},
             "decay_coherence":{"unit_label":"$D(t)$","label":"Decay Coherence"},
-            "actual_successrate":{"unit_label":"$S_a(t)$","label":"Observed Communicative Success"},
+            "actual_successrate":{"unit_label":"$S_o(t)$","label":"Observed Communicative Success"},
             "Nlink":{"unit_label":"$N_l(t)$","label":"Local Complexity"},
             "N_d":{"unit_label":"$N_d(t)$","label":"Global Complexity"},
             "N_meanings":{"unit_label":"#meanings","label":"Number of meanings"},
@@ -21,6 +21,7 @@
 
 
             "entropy_final":{"unit_label":"$E(t)$","label":"Entropy"},
+            "entropycouples_norm":{"unit_label":"$i(t)$","label":"Shared information"},
             "srtheo_local":{"unit_label":"$S_{LAPS}(t)$","label":"Local Approximated Probability of Success"},
 
 
@@ -41,8 +42,8 @@
             "srtheo_end_smooth":{"unit_label":"$S_{end}$","label":"End TCS value"},
             "decay_time":{"unit_label":"$t_{decay}$","label":"Decay Time"},
             "decay_time_total":{"unit_label":"$t_{decay,tot}$","label":"Decay Time Total"},
-            "max_mem":{"unit_label":"$N_{l,max}$","label":"Maximum Local Complexity"},
-            "max_N_d":{"unit_label":"$N_{d,max}$","label":"Maximum Global Complexity"},
+            "max_mem":{"unit_label":"$N_l^{max}$","label":"Maximum Local Complexity"},
+            "max_N_d":{"unit_label":"$N_d^{max}$","label":"Maximum Global Complexity"},
             "max_N_d_time":{"unit_label":"$t_d$","label":"Maximum Global Complexity Time"},
             "max_Nlink_time":{"unit_label":"$t_{max}$","label":"Maximum Local Complexity Time"},
             "tdiff_d":{"unit_label":"$t_{diff,d}$","label":"Difference between Max Global Complexity Time and Convergence Time"},

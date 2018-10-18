@@ -238,8 +238,8 @@
             base_cfg['pop_cfg']['env_cfg']['W'] = {{% M,100 %}} * {{% W_inf,True %}}
         else:
             base_cfg['pop_cfg']['env_cfg']['W'] = base_cfg['pop_cfg']['env_cfg']['M']*{{% N,100 %}}
-            if not {{% agent_init,True %}}:
-                base_cfg['pop_cfg']['agent_init_cfg']['sub_agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
+            #if not {{% agent_init,True %}}:
+            base_cfg['pop_cfg']['agent_init_cfg']['sub_agent_init_cfg'] = {'agent_init_type':'own_words','M':base_cfg['pop_cfg']['env_cfg']['M'],'W_range':base_cfg['pop_cfg']['env_cfg']['M']*{{% N,40 %}}}
     elif {{% W,False %}}:
         base_cfg['pop_cfg']['env_cfg']['W'] = max({{% W,0 %}},base_cfg['pop_cfg']['env_cfg']['M'])
     if {{% optimized,False %}}:
@@ -271,7 +271,7 @@
         base_cfg['pop_cfg']['strat_cfg']['vu_cfg'] = {'vu_type':{{% 'acceptance_beta',accpol %}},'subvu_cfg':{'vu_type':{{% vu_type,'minimal' %}}}}
         if {{% accpol,False %}} == 'acceptance_beta' :
             base_cfg['pop_cfg']['strat_cfg']['vu_cfg']['beta']= {{% beta,0.3 %}}
-        elif {{% accpol,False %}} == 'acceptance_tsmax_new' :
+        elif {{% accpol,False %}} in ['acceptance_tsmax_new','acceptance_coherencemax'] :
             if base_cfg['pop_cfg']['strat_cfg']['strat_type'][:7] in ['coheren','lapsmax']:
                 base_cfg['pop_cfg']['strat_cfg']['vu_cfg']['no_mp'] = True
             else:
@@ -499,7 +499,7 @@
           "wordchoice_cfg": {
             "wordchoice_type": "random"
               },
-              "strat_type": "naive" 
+              "strat_type": "naive"
             },
             "nbagent": {{% N,10 %}}, #population size
             "env_cfg": {

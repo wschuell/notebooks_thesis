@@ -49,7 +49,7 @@
         "memory_policy_both":{"param_name":"memory_policy","default_value":false,"values":[false,true],"short_label":"memory_policy"},
 
         "accpol":{"param_name":"accpol","default_value":false,"values":[false,true],"short_label":"acceptance policy"},
-        "accpol_replace":{"param_name":"accpol","default_value":false,"values":[false,"acceptance_beta","acceptance_tsmax_new"],"short_label":"acceptance policy"},
+        "accpol_replace":{"param_name":"accpol","default_value":false,"values":[false,"acceptance_beta","acceptance_tsmax_new","acceptance_coherencemax"],"short_label":"acceptance policy"},
         "accpol_replace_beta":{"param_name":"accpol","default_value":"acceptance_beta","values":["acceptance_beta"],"short_label":"acceptance policy"},
         "accpol_replace_beta_false":{"param_name":"accpol","default_value":false,"values":[false,"acceptance_beta"],"short_label":"acceptance policy"},
         "accpol_replace_laps_false":{"param_name":"accpol","default_value":false,"values":[false,"acceptance_tsmax_new"],"short_label":"acceptance policy"},
@@ -62,7 +62,7 @@
         "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction scenario","label":"Interaction Scenario"},
 
         "vu_type":{"param_name":"vu_type","default_value":"minimal","values":["minimal","imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
-        "vu_type_basic":{"param_name":"vu_type","default_value":"minimal","values":["minimal","imitation","BLIS"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
+        "vu_type_basic":{"param_name":"vu_type","default_value":"minimal","values":["minimal","BLIS","imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
         "vu_type_imitation":{"param_name":"vu_type","default_value":"imitation","values":["imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
         "vu_type_minimal":{"param_name":"vu_type","default_value":"minimal","values":["minimal"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
         "vu_type_minimal_imit":{"param_name":"vu_type","default_value":"minimal","values":["minimal","imitation"],"short_label":"Voc Update","label":"Vocabulary Update Policy"},
