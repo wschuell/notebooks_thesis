@@ -96,12 +96,16 @@ savefig(p2,'scaling_VU_Nmax',plot_mode='half')
 p = meta_exp.plot('srtheo',accpol='all',get_object=True,N=1000)
 p.xmax = 1.5*10**5
 p.std_mode='minmax'
-savefig(p,'srtheo_accpol')
+p.title = ''
+p.legendoptions['labels'] = ['Standard','Acceptance Policy']
+savefig(p,'srtheo_accpol',plot_mode='half')
 
 p = meta_exp.plot('Nlink',accpol='all',get_object=True,N=1000)
 p.xmax = 1.5*10**5
+p.title = ''
 p.std_mode='minmax'
-savefig(p,'Nlink_accpol')
+p.legendoptions['labels'] = ['Standard','Acceptance Policy']
+savefig(p,'Nlink_accpol',plot_mode='half')
 
 p = meta_exp.plot_against(measure='conv_time',token='N',accpol='all',get_object=True)
 p.xmin = 10

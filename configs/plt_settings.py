@@ -6,58 +6,60 @@
 import os
 import matplotlib
 
+coeff = 2.
+
 def plot_settings(ptype=None):
 	if ptype == 'margin':	
-		fontsize = 15
-		figsize = 1.95,1.95
-		correction_ticks = -2
+		fontsize = 10*coeff
+		figsize = 1.95*coeff,1.95*coeff
+		correction_ticks = -2*coeff
 		correction_title = 0
 		tight = True
-		linew = 1.5
+		linew = 1.5*coeff
 	elif ptype == 'fullwidth':
-		fontsize = 15
-		figsize = 6.48,2
-		correction_ticks = 0
-		correction_title = 5
+		fontsize = 10*coeff
+		figsize = 6.48,2*coeff
+		correction_ticks = 0*coeff
+		correction_title = 5*coeff
 		tight = False
 		linew = 3
 	elif ptype == 'fullwidth3':
-		fontsize = 15
-		figsize = 2.16,2
+		fontsize = 10*coeff
+		figsize = 2.16*coeff,2*coeff
 		correction_ticks = 0
-		correction_title = 5
+		correction_title = 5*coeff
 		tight = False
-		linew = 3
+		linew = 3*coeff
 	elif ptype == 'half':
-		fontsize = 15
-		figsize = 2.105,2
+		fontsize = 10*coeff
+		figsize = 2.105*coeff,2*coeff
 		correction_ticks = 0
-		correction_title = 5
+		correction_title = 5*coeff
 		tight = False
-		linew = 3
+		linew = 3*coeff
 	elif ptype == 'normal':
-		fontsize = 15
-		figsize = 4.21,2
+		fontsize = 10*coeff
+		figsize = 4.21*coeff,2*coeff
 		correction_ticks = 0
-		correction_title = 5
+		correction_title = 5*coeff
 		tight = False
-		linew = 3
+		linew = 3*coeff
 	else:
-		fontsize = 15
-		figsize = 8,5.5
-		correction_ticks = 0
-		correction_title = 5
+		fontsize = 15*coeff
+		figsize = 8*coeff,5.5*coeff
+		correction_ticks = 0*coeff
+		correction_title = 5*coeff
 		tight = False
-		linew = 3
-	matplotlib.rcParams['font.size'] = 10#fontsize
-	matplotlib.rcParams['xtick.labelsize'] = 8#fontsize + correction_ticks
-	matplotlib.rcParams['ytick.labelsize'] = 8#fontsize + correction_ticks
-	matplotlib.rcParams['axes.titlesize'] = 10#fontsize + correction_title
-	matplotlib.rcParams['axes.labelsize'] = 10#fontsize
-	matplotlib.rcParams['legend.fontsize'] = 8#fontsize
+		linew = 3*coeff
+	matplotlib.rcParams['font.size'] = 10*coeff#fontsize
+	matplotlib.rcParams['xtick.labelsize'] = 8*coeff#fontsize + correction_ticks
+	matplotlib.rcParams['ytick.labelsize'] = 8*coeff#fontsize + correction_ticks
+	matplotlib.rcParams['axes.titlesize'] = 10*coeff#fontsize + correction_title
+	matplotlib.rcParams['axes.labelsize'] = 10*coeff#fontsize
+	matplotlib.rcParams['legend.fontsize'] = 8*coeff#fontsize
 	matplotlib.rcParams['figure.figsize'] = figsize
 	matplotlib.rcParams['lines.linewidth'] = linew
-	matplotlib.rcParams['lines.markersize'] = 8#fontsize-3
+	matplotlib.rcParams['lines.markersize'] = 8*coeff#fontsize-3
 	matplotlib.rcParams['font.family'] = 'serif'
 	if matplotlib.rcParams['font.serif'][:2] != ['Computer Modern Roman','Latin Modern Roman']:
 		matplotlib.rcParams['font.serif'] = ['Computer Modern Roman','Latin Modern Roman'] + matplotlib.rcParams['font.serif']

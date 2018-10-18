@@ -609,7 +609,7 @@ configs = [
 
 {"folder":"chapters/theory/perf",
 "imports":["import naminggamesal as ngal"],
-"nbiter":20,
+"nbiter":8,
 "additional_metrics":"classic",
 "exec_type":"avakas",
 "stop_on":"converged",
