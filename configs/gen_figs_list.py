@@ -5,6 +5,82 @@ from metaexp_settings import meta_exp,plot_settings,savefig
 import matplotlib.pyplot as plt
 
 
+#######chapters/_otherfigs/decvec#######
+
+import naminggamesal as ngal
+
+M=100
+N=50
+W=2*M
+plot_settings('margin')
+plt.plot(list(range(M+1)),[(M-i)/M for i in range(M+1)])
+plt.xlabel('$\mu$')
+plt.ylabel('$D_{\mu}$')
+plt.xlim(0,M)
+plt.ylim(0,1)
+# plt.title('Decision Vector')
+savefig(None,'decvec_explobiased',plot_mode='margin')
+
+plt.figure()
+# M=100
+# W=20
+Temp = [0.01,0.1,1]
+for t in Temp:
+    plt.plot(list(range(M+1)),ngal.ngmeth_utils.decvec_utils.decvec4_softmax_from_MW(M, W, t),label=str(t))
+plt.xlabel('$\mu$')
+plt.ylabel('$D_{\mu}$')
+plt.xlim(0,M)
+plt.ylim(0,1)
+plt.legend()
+# plt.title('Decision Vector')
+savefig(None,'decvec_infogain',plot_mode='margin')
+
+
+plt.figure()
+# M=100
+# W=200
+# N=10
+plt.plot(list(range(M+1)),ngal.ngmeth_utils.decvec_utils.decvec_chunks_from_MW(M=M, W=W, N=N,Temp=0.001))
+plt.xlabel('$\mu$')
+plt.ylabel('$D_{\mu}$')
+plt.xlim(0,M)
+plt.ylim(0,1)
+# plt.title('Decision Vector')
+savefig(None,'decvec_chunks',plot_mode='margin')
+
+plt.figure()
+M=12
+W=24
+N=10
+plot_settings('half')
+plt.plot(list(range(M+1)),ngal.ngmeth_utils.decvec_utils.decvec_chunks_from_MW(M=M, W=W, N=N,Temp=0.001))
+plt.xlabel('$\mu$')
+plt.ylabel('$D_{\mu}$')
+plt.xlim(0,M)
+plt.ylim(0,1)
+plt.title('Chunks decision vector')
+# plt.title('Decision Vector')
+savefig(None,'decvec_chunks10',plot_mode='half')
+
+
+# xfav10 = [1.,0.59091375, 0.34853376, 0.02105435, 0.9192925 , 0.91107212,
+       # 0.09316722, 0.01361819, 0.41919292, 0.00474532,0.]
+xfav = [1., 0.28922885,  0.83188353,  0.96783212,  0.0485293 ,  0.80432386,
+        0.86428831,  0.98404819,  0.07680652,  0.93561109,  0.0409585 ,
+        0.00521002, 0.]
+plt.figure()
+M=12
+# W=200
+# N=10
+plot_settings('half')
+plt.plot(list(range(M+1)),xfav)
+plt.xlabel('$\mu$')
+plt.ylabel('$D_{\mu}$')
+plt.xlim(0,M)
+plt.ylim(0,1)
+plt.title('Optimized decision vector')
+# plt.title('Decision Vector')
+savefig(None,'decvec_cma',plot_mode='half')
 #######chapters/naminggame/normal#######
 
 
@@ -104,13 +180,13 @@ savefig(p2,'scaling_Ndmax',plot_mode='normal')
 
 #######chapters/naminggame/VU#######
 
-p = meta_exp.plot('srtheo',vu_type='all',get_object=True)
-p.xmax = 6*10**4
-savefig(p,'srtheoVU')
+# p = meta_exp.plot('srtheo',vu_type='all',get_object=True)
+# p.xmax = 6*10**4
+# savefig(p,'srtheoVU')
 
-p = meta_exp.plot('Nlink',vu_type='all',get_object=True)
-p.xmax = 6*10**4
-savefig(p,'NlinkVU',plot_mode='fullwidth2')
+# p = meta_exp.plot('Nlink',vu_type='all',get_object=True)
+# p.xmax = 6*10**4
+# savefig(p,'NlinkVU',plot_mode='fullwidth2')
 
 p = meta_exp.plot_against(measure='conv_time',token='N',vu_type='all',get_object=True)
 p.xmin = 10
@@ -198,13 +274,25 @@ p.title = ''
 #p.std_mode='minmax'
 savefig(p,'srtheo_blocked',plot_mode='margin')
 
-#######chapters/topicchoice/STN#######
+#######chapters/topicchoice/normal#######
 
-for NN,ym in zip(meta_exp.params['N']['values'],[50000,10**7,10**7]):
-    p = meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type='all',N=NN,get_object=True)
-    p.ymax = ym
-    p.xmax=1.
-    savefig(p,'srtheo_STN_'+str(NN))
+ni=8
+p = meta_exp.plot('srtheo',vu_type='imitation',N=10,nbiter=ni,get_object=True)
+p2=meta_exp.plot('entropycouples_norm',vu_type='imitation',N=10,nbiter=ni,get_object=True)
+p3 = p+p2
+p3.xmax =30000
+p3.title = ''
+p3.ylabel = ''
+p3.legendoptions['labels'] = ['S(t)','$<i_2>(t)$']
+savefig(p3,'entropycouples',plot_mode='margin')
+
+# #######chapters/topicchoice/STN#######
+
+# for NN,ym in zip(meta_exp.params['N']['values'],[50000,10**7,10**7]):
+#     p = meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type='all',N=NN,get_object=True)
+#     p.ymax = ym
+#     p.xmax=1.
+#     savefig(p,'srtheo_STN_'+str(NN))
 
 #######chapters/topicchoice/STW#######
 
@@ -217,29 +305,89 @@ savefig(p,'srtheo_STW')
 #######chapters/topicchoice/ST2#######
 
 p = meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type=['naive','success_threshold_wise','success_threshold'],N=100,get_object=True)
-p.ymax = 10**7
+p.ymax = 0.5*10**7
 p.xmax=1.
-savefig(p,'convtime_ST2')
+p.legendoptions['labels'] = ['Random Topic Choice','Success Threshold','ST Level 1']#,'ST Level 2']
+p.Yoptions[0]['linestyle']='--'
+for i in [1,2]:
+    p.Yoptions[i]['marker'] = 'o'
+p.xlabel = '$\\alpha_{ST}$'
+savefig(p,'convtime_ST2',plot_mode='normal')
+
+#######chapters/topicchoice/MC2#######
+
+p = meta_exp.plot_against(token='mincounts_param',measure='conv_time',strat_type=['naive','mincounts','mincounts_basic'],N=100,get_object=True)
+p.ymax = 0.5*10**7
+p.xmax=1.
+p.legendoptions['labels'] = ['Random Topic Choice','Min. Counts','MC Level 1']#,'ST Level 2']
+p.Yoptions[0]['linestyle']='--'
+for i in [1,2]:
+    p.Yoptions[i]['marker'] = 'o'
+p.xlabel = '$\\~n_{MC}$'
+savefig(p,'convtime_MC2',plot_mode='normal')
 
 #######chapters/topicchoice/comparison#######
 
 p = meta_exp.plot_against(measure='conv_time',token='N',strat_type='all',get_object=True)
 p.xmin = 10
-p.ymin = 1
-plot_settings()
+p.ymin = 10
+plot_settings('normal')
 #p.title = ''
 p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True)
-savefig(p,'memconstr_comparison')
+#p2.show()
+p2.legendoptions['labels'][0] = 'Random Topic Choice'
+p2.legendoptions['labels'][1] = '_nolegend_'
+p2.legendoptions['labels'][2] = 'Success Threshold'
+p2.legendoptions['labels'][4] = 'Minimal Counts'
+p2.legendoptions['labels'][6] = 'Chunks'
+p2.Yoptions[1]['alpha'] = 0.
+p2.Yoptions[5]['alpha'] = 0.
+p2.Yoptions[7]['alpha'] = 0.
+p2.legendoptions['labels'][5] = '_nolegend_'
+p2.legendoptions['labels'][7] = '_nolegend_'
+savefig(p2,'memconstr_comparison',plot_mode='normal')
 
-#######chapters/topicchoice/comparison_HC#######
+#######chapters/topicchoice/comparisonHC#######
 
 p = meta_exp.plot_against(measure='conv_time',token='N',strat_type='all',get_object=True)
 p.xmin = 10
-p.ymin = 1
-plot_settings()
-#p.title = ''
+p.ymin = 10
+plot_settings('normal')
+p.title +=": Hearer's Choice"
 p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True)
-savefig(p,'memconstr_comparisonHC')
+#p2.show()
+p2.legendoptions['labels'][0] = 'Random Topic Choice'
+p2.legendoptions['labels'][1] = '_nolegend_'
+p2.legendoptions['labels'][2] = 'Success Threshold'
+p2.legendoptions['labels'][4] = 'Minimal Counts'
+p2.legendoptions['labels'][6] = 'Chunks'
+p2.Yoptions[1]['alpha'] = 0.
+p2.Yoptions[5]['alpha'] = 0.
+p2.Yoptions[7]['alpha'] = 0.
+p2.legendoptions['labels'][5] = '_nolegend_'
+p2.legendoptions['labels'][7] = '_nolegend_'
+savefig(p2,'memconstr_comparisonHC',plot_mode='normal')
+
+#######chapters/topicchoice/comparisonW#######
+
+p = meta_exp.plot_against(measure='conv_time',token='N',strat_type='all',W_inf=2,get_object=True)
+p.xmin = 10
+p.ymin = 10
+plot_settings('normal')
+p.title +=": Homonymy"
+p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True)
+#p2.show()
+p2.legendoptions['labels'][0] = 'Random Topic Choice'
+p2.legendoptions['labels'][1] = '_nolegend_'
+p2.legendoptions['labels'][2] = 'Success Threshold'
+p2.legendoptions['labels'][4] = 'Minimal Counts'
+p2.legendoptions['labels'][6] = 'Chunks'
+p2.Yoptions[1]['alpha'] = 0.
+p2.Yoptions[5]['alpha'] = 0.
+p2.Yoptions[7]['alpha'] = 0.
+p2.legendoptions['labels'][5] = '_nolegend_'
+p2.legendoptions['labels'][7] = '_nolegend_'
+savefig(p2,'memconstr_comparisonW',plot_mode='normal')
 
 
 #######chapters/replace/replace#######
@@ -248,3 +396,94 @@ p = meta_exp.plot('srtheo',get_object=True,rate=[100,20,10,1])
 p.legendoptions['labels'] = ['$t_r='+val.split('=')[1]+'$' for val in p.legendoptions['labels']]
 p.xmax = 460000
 savefig(p,'replace_simple_srtheo',plot_mode='normal')
+
+#######chapters/theory/perf#######
+
+p = meta_exp.plot_against(measure='perf_ct',
+                          token='N',
+                          strat_type=['naive','naive_smart','success_threshold_wise','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','Random + Play smart','Success Threshold','LAPSmax','Coherence']
+p.title = 'Performance: Convergence time'
+for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p,'perf_ct',plot_mode='normal')
+
+
+p = meta_exp.plot_against(measure='perf_cs',
+                          token='N',
+                          strat_type=['naive','naive_smart','success_threshold_wise','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','Random + Play smart','Success Threshold','LAPSmax','Coherence']
+p.title = 'Performance: Convergence speed'
+for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p,'perf_cs',plot_mode='normal')
+
+
+p = meta_exp.plot_against(measure='perf_st',
+                          token='N',
+                          strat_type=['naive','naive_smart','success_threshold_wise','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','Random + Play smart','Success Threshold','LAPSmax','Coherence']
+p.title = 'Performance: Spreading'
+for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p,'perf_st',plot_mode='normal')
+
+
+p = meta_exp.plot_against(measure='perf_ss',
+                          token='N',
+                          strat_type=['naive','naive_smart','success_threshold_wise','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','Random + Play smart','Success Threshold','LAPSmax','Coherence']
+p.title = 'Performance: Spreading speed'
+for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p,'perf_ss',plot_mode='normal')
+
+
+p = meta_exp.plot_against(measure='perf_ex',
+                          token='N',
+                          strat_type=['naive','naive_smart','success_threshold_wise','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','Random + Play smart','Success Threshold','LAPSmax','Coherence']
+p.title = 'Performance: Exploration'
+for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p,'perf_ex',plot_mode='normal')
+
+
+p = meta_exp.plot_against(measure='perf_ls',
+                          token='N',
+                          strat_type=['naive','naive_smart','success_threshold_wise','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','Random + Play smart','Success Threshold','LAPSmax','Coherence']
+p.title = 'Performance: Lexicon size'
+for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p,'perf_ls',plot_mode='normal')

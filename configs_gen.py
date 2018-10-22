@@ -1,6 +1,20 @@
 configs = [
 
 ######## THESIS
+### otherfigs ####
+{"folder":"chapters/_otherfigs/decvec",
+"imports":["import naminggamesal as ngal"],
+"nbiter":8,
+"additional_metrics":"classic",
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"basic",
+"tmax_type":"scaling",
+"params":[],
+"metrics_local":[],
+"metrics_global":[],
+},
+
 
 ### NG ####
 {"folder":"chapters/naminggame/normal",
@@ -327,7 +341,7 @@ configs = [
 "plt_settings":"classic",
 "func_type":"basic",
 "tmax_type":"scaling_bigmax",
-"params":["N_100","M_100",'W_inf','vu_type_imit_minimal'],
+"params":["N_10_100","M_100",'W_inf_all','vu_type_imit_minimal','strat_type_ST'],
 "metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','entropycouples_norm'],
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',],
 },
@@ -626,7 +640,7 @@ configs = [
 "plt_settings":"classic",
 "func_type":"replace",
 "tmax_type":"scaling_withupperbound",
-"params":["N_100","M_100","rate_replace","accpol_replace","agent_init_converged"],
+"params":["N_100","M_100","rate_replace","accpol_replace","agent_init_converged",'strat_type_coherence'],
 "metrics_local":["Nlink","srtheo","N_d",'N_meanings','N_words','actual_successrate','srtheo_local','decay_coherence'],#'entropy_extrapol',
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd',"srtheo_end","srtheo_end_smooth",'decay_time','decay_time_total'],
 },

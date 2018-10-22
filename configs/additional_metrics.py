@@ -9,7 +9,7 @@ def perf_ct(db,xp_uuid):
 	N = cfg['pop_cfg']['nbagent']
 	M = cfg['pop_cfg']['env_cfg']['M']
 	ans = ngal.ngmeth.conv_utils.perf1(tc=val,N=N,M=M)
-	cv._Y[0][0] = ans
+	cv._Y[0] = [ans]
 	cv.ymin = 0
 	cv.ymax = 1
 	cv.semilog = True
@@ -24,7 +24,7 @@ def perf_cs(db,xp_uuid):
 	M = cfg['pop_cfg']['env_cfg']['M']
 	val = ngal.ngmeth.conv_utils.perf2(srtheo_vec=sr_vec,t_vec=t_vec,N=N,M=M)
 	cv = db.get_graph(xp_uuid=xp_uuid,method='conv_time2')
-	cv._Y[0][0] = val
+	cv._Y[0] = [val]
 	cv.ymin = 0
 	cv.ymax = 1
 	return cv
@@ -38,8 +38,11 @@ def perf_ex(db,xp_uuid):
 	cfg = json.loads(db.get_param(xp_uuid=xp_uuid,param='Config'))
 	N = cfg['pop_cfg']['nbagent']
 	M = cfg['pop_cfg']['env_cfg']['M']
-	ans = ngal.ngmeth.conv_utils.perf_ex(ninv=Ninv,N=N,M=M)
-	cv._Y[0][0] = ans
+	if np.isnan(cv._Y[0][0]):
+		ans = np.nan
+	else:
+		ans = ngal.ngmeth.conv_utils.perf_ex(ninv=Ninv,N=N,M=M)
+	cv._Y[0] = [ans]
 	cv.ymin = 0
 	cv.ymax = 1
 	cv.semilog = True
@@ -55,8 +58,11 @@ def perf_st(db,xp_uuid):
 	cfg = json.loads(db.get_param(xp_uuid=xp_uuid,param='Config'))
 	N = cfg['pop_cfg']['nbagent']
 	M = cfg['pop_cfg']['env_cfg']['M']
-	ans = ngal.ngmeth.conv_utils.perf_st(tc=val,N=N,M=M,ninv=Ninv)
-	cv._Y[0][0] = ans
+	if np.isnan(cv._Y[0][0]):
+		ans = np.nan
+	else:
+		ans = ngal.ngmeth.conv_utils.perf_st(tc=val,N=N,M=M,ninv=Ninv)
+	cv._Y[0] = [ans]
 	cv.ymin = 0
 	cv.ymax = 1
 	cv.semilog = True
@@ -72,9 +78,12 @@ def perf_ss(db,xp_uuid):
 	cfg = json.loads(db.get_param(xp_uuid=xp_uuid,param='Config'))
 	N = cfg['pop_cfg']['nbagent']
 	M = cfg['pop_cfg']['env_cfg']['M']
-	val = ngal.ngmeth.conv_utils.perf_ss(srtheo_vec=sr_vec,t_vec=t_vec,N=N,M=M,ninv=Ninv)
 	cv = db.get_graph(xp_uuid=xp_uuid,method='conv_time2')
-	cv._Y[0][0] = val
+	if np.isnan(cv._Y[0][0]):
+		val = np.nan
+	else:
+		val = ngal.ngmeth.conv_utils.perf_ss(srtheo_vec=sr_vec,t_vec=t_vec,N=N,M=M,ninv=Ninv)
+	cv._Y[0] = [val]
 	cv.ymin = 0
 	cv.ymax = 1
 	cv.semilog = True
@@ -88,6 +97,8 @@ def perf_ls(db,xp_uuid):
 	M = cfg['pop_cfg']['env_cfg']['M']
 	val = ngal.ngmeth.conv_utils.perf_ls(memmax=val,N=N,M=M)
 	cv = db.get_graph(xp_uuid=xp_uuid,method='conv_time2')
+	if np.isnan(cv._Y[0][0]):
+		val = np.nan
 	cv._Y[0][0] = val
 	cv.ymin = 0
 	cv.ymax = 1
