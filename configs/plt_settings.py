@@ -7,7 +7,7 @@ import os
 import matplotlib
 
 coeff = 2.
-coeff_font = 1.65
+coeff_font = 2.#1.65
 
 def plot_settings(ptype='normal'):
 	if ptype == 'margin':
@@ -68,9 +68,12 @@ def plot_settings(ptype='normal'):
 	matplotlib.rcParams['figure.figsize'] = figsize
 	matplotlib.rcParams['lines.linewidth'] = linew
 	matplotlib.rcParams['lines.markersize'] = 5*coeff_font#fontsize-3
-	matplotlib.rcParams['font.family'] = 'serif'
-	if matplotlib.rcParams['font.serif'][:2] != ['Computer Modern Roman','Latin Modern Roman']:
-		matplotlib.rcParams['font.serif'] = ['Computer Modern Roman','Latin Modern Roman'] + matplotlib.rcParams['font.serif']
+
+	matplotlib.rcParams['mathtext.fontset'] = 'stix'
+	matplotlib.rcParams['font.family'] = 'STIXGeneral'
+	# matplotlib.rcParams['font.family'] = 'serif'
+	# if matplotlib.rcParams['font.serif'][:2] != ['Computer Modern Roman','Latin Modern Roman']:
+	# 	matplotlib.rcParams['font.serif'] = ['Computer Modern Roman','Latin Modern Roman'] + matplotlib.rcParams['font.serif']
 
 
 def savefig(p,name,plot_mode=None,file_format='pdf'):
@@ -81,3 +84,5 @@ def savefig(p,name,plot_mode=None,file_format='pdf'):
 		p.savefig("figures/"+name+"."+file_format, format=file_format, bbox_inches='tight', dpi=500)
 	else:
 		matplotlib.pyplot.savefig("figures/"+name+"."+file_format, format=file_format, bbox_inches='tight', dpi=500)
+
+

@@ -347,6 +347,15 @@ p2.legendoptions['labels'][5] = '_nolegend_'
 p2.legendoptions['labels'][7] = '_nolegend_'
 savefig(p2,'memconstr_comparison',plot_mode='normal')
 
+
+p = meta_exp.plot('srtheo',strat_type=['naive','naive_explobiased',
+    'decision_vector_gainsoftmax',
+   'decision_vector_chunks'],get_object=True)
+p.xmax = 3*10**6
+p.legendoptions['labels'] = ['Random Topic Choice','Explo. Biased','Info. Gain','Chunks']
+p.Yoptions[0]['linestyle'] = '--'
+savefig(p,'IGvsCH',plot_mode='normal')
+
 #######chapters/topicchoice/comparisonHC#######
 
 p = meta_exp.plot_against(measure='conv_time',token='N',strat_type='all',get_object=True)
@@ -487,3 +496,138 @@ p.title = 'Performance: Lexicon size'
 for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
     yopt['marker'] = m
 savefig(p,'perf_ls',plot_mode='normal')
+
+#######chapters/laps/lapsT2#######
+
+
+p1 = meta_exp.plot_against(token='time_scale',
+                            time_scale='all',
+                            measure='conv_time',
+                            get_object=True)
+p1.legendoptions['labels'] = ['Random Topic Choice']
+p1.Yoptions[0]={'linestyle':'--'}
+p2 =  meta_exp.plot_against(token='time_scale',
+                           strat_type='lapsmax_mab_explothreshold',
+                            time_scale='all',
+                            gamma=[1.,0.01],
+                            measure='conv_time',
+                            get_object=True)
+p2.legendoptions['labels'] = ['LAPSmax, only 1st level (γ=1)','LAPSmax with Bandit (γ=0.01)']
+p3 = p1 + p2
+p3.ymax = 6*10**5
+for yopt,m in zip(p3.Yoptions,[None,'o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p3,'lapsT2',plot_mode='normal')
+
+
+
+p1 = meta_exp.plot(measure='srtheo',get_object=True)
+p1.add_option(linestyle='--')
+p1.legendoptions['labels'] = ['Random Topic Choice']
+p2 = meta_exp.plot(measure='srtheo',strat_type='lapsmax_mab_explothreshold',time_scale=[1,2,3,5,10],get_object=True,gamma=0.01)
+p3 = p1+p2
+p3.xmax = 4*10**5
+savefig(p3,'laps_srtheo',plot_mode='fullwidth2')
+
+p1 = meta_exp.plot(measure='Nlink',get_object=True)
+p1.add_option(linestyle='--')
+p1.legendoptions['labels'] = ['Random Topic Choice']
+p2 = meta_exp.plot(measure='Nlink',strat_type='lapsmax_mab_explothreshold',time_scale=[1,2,3,5,10],get_object=True,gamma=0.01)
+p3 = p1+p2
+p3.xmax = 4*10**5
+savefig(p3,'laps_Nlink',plot_mode='fullwidth2')
+
+
+
+#######chapters/laps/coherenceT2#######
+
+
+p1 = meta_exp.plot_against(token='time_scale',
+                            time_scale=list(range(1,16)),
+                            measure='conv_time',
+                            get_object=True)
+p1.legendoptions['labels'] = ['Random Topic Choice']
+p1.Yoptions[0]={'linestyle':'--'}
+p2 =  meta_exp.plot_against(token='time_scale',
+                           strat_type=['coherence_last_only1stlevel','coherence_last'],
+                            time_scale=list(range(1,16)),
+                            measure='conv_time',
+                            get_object=True)
+p2.legendoptions['labels'] = ['Coherence, only 1st level','Coherence']
+p3 = p1 + p2
+p3.ymax = 6*10**5
+for yopt,m in zip(p3.Yoptions,[None,'o','s','v','d','+']):
+    yopt['marker'] = m
+savefig(p3,'coherT2',plot_mode='normal')
+
+#######chapters/laps/previous#######
+
+p = meta_exp.plot('srtheo',strat_type='all',get_object=True)
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle'] = '--'
+p.legendoptions['labels'] = ['Random','Success Threshold', 'Min. Counts', 'Chunks','Explo Biased']
+savefig(p,'previous_srtheo',plot_mode='fullwidth2')
+
+
+p = meta_exp.plot('Nlink',strat_type='all',get_object=True)
+p.xmax = 6*10**5
+p.legendoptions['labels'] = ['Random','Success Threshold', 'Min. Counts', 'Chunks','Explo Biased']
+p.Yoptions[0]['linestyle'] = '--'
+savefig(p,'previous_Nlink',plot_mode='fullwidth2')
+
+#######chapters/laps/normal#######
+
+p = meta_exp.plot(measure='entropy_final',N=1000,get_object=True)
+p.xmax=4*10**6
+# p.Yoptions[0]['linestyle'] = '--'
+savefig(p,'entropy',plot_mode='margin')
+
+#######chapters/laps/normal2#######
+p = meta_exp.plot(measure='srtheo_local',get_object=True,time_scale='all')
+p.xmax=8*10**6
+p.title = ''
+savefig(p,'laps_typical',plot_mode='margin')
+
+
+#######chapters/laps/lapsscaling#######
+
+ST = ['naive','lapsmax_mab_explothreshold','coherence_last']
+p = meta_exp.plot_against(measure='conv_time2',token='N',strat_type=ST,get_object=True)
+p.xmin = 10
+p.ymin = 1
+p.legendoptions['labels'] = ['Random Topic Choice','LAPSmax','Coherence']
+#p.title = ''
+p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True,alpha_noind=True)
+p2.legendoptions['labels'][1] = '_nolegend_'
+p2.legendoptions['labels'][3] = '_nolegend_'
+p2.ymin=10**3
+savefig(p2,'laps_scaling',plot_mode='fullwidth2')
+
+ST = ['naive','lapsmax_mab_explothreshold','coherence_last']
+p = meta_exp.plot_against(measure='max_mem',token='N',strat_type=ST,get_object=True)
+p.xmin = 10
+p.ymin = 10
+p.legendoptions['labels'] = ['Random Topic Choice','LAPSmax','Coherence']
+#p.title = ''
+p2 = meta_exp.powerlaw_fit(p,get_object=True,simple_labels=True,alpha_noind=True)
+p2.legendoptions['labels'][1] = '_nolegend_'
+p2.legendoptions['labels'][3] = '_nolegend_'
+p2.legendoptions['labels'][5] = '_nolegend_'
+p2.Yoptions[3]['alpha'] = 0.
+savefig(p2,'laps_Nlscaling',plot_mode='fullwidth2')
+
+#######chapters/laps/lapsWT#######
+
+p = meta_exp.plot('srtheo',W_inf='all',get_object=True,N=100,strat_type='lapsmax_mab_explothreshold')
+p.xmax = 1.5*10**5
+p.legendoptions['labels'] = ['W=M','W=2M','W=$\infty$']
+p.title = 'LAPSmax homonymy'
+savefig(p,'laps_WT',plot_mode='fullwidth2')
+
+#######chapters/laps/coherenceWT#######
+
+p = meta_exp.plot('srtheo',W_inf='all',get_object=True,N=100,strat_type='coherence_last',time_scale=8)
+p.xmax = 1.5*10**5
+p.legendoptions['labels'] = ['W=M','W=2M','W=$\infty$']
+p.title = 'Coherence homonymy'
+savefig(p,'coherence_WT',plot_mode='fullwidth2')
