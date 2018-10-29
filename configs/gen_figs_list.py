@@ -307,7 +307,7 @@ savefig(p,'srtheo_STW')
 p = meta_exp.plot_against(token='threshold_param',measure='conv_time',strat_type=['naive','success_threshold_wise','success_threshold'],N=100,get_object=True)
 p.ymax = 0.5*10**7
 p.xmax=1.
-p.legendoptions['labels'] = ['Random Topic Choice','Success Threshold','ST Level 1']#,'ST Level 2']
+p.legendoptions['labels'] = ['Random Topic Choice','Success Threshold (Level 1+2)','Success Threshold Level 1 only']#,'ST Level 2']
 p.Yoptions[0]['linestyle']='--'
 for i in [1,2]:
     p.Yoptions[i]['marker'] = 'o'
@@ -319,7 +319,7 @@ savefig(p,'convtime_ST2',plot_mode='normal')
 p = meta_exp.plot_against(token='mincounts_param',measure='conv_time',strat_type=['naive','mincounts','mincounts_basic'],N=100,get_object=True)
 p.ymax = 0.5*10**7
 p.xmax=1.
-p.legendoptions['labels'] = ['Random Topic Choice','Min. Counts','MC Level 1']#,'ST Level 2']
+p.legendoptions['labels'] = ['Random Topic Choice','Min. Counts (Level 1+2)','Min. Counts Level 1 only']#,'ST Level 2']
 p.Yoptions[0]['linestyle']='--'
 for i in [1,2]:
     p.Yoptions[i]['marker'] = 'o'
@@ -328,7 +328,8 @@ savefig(p,'convtime_MC2',plot_mode='normal')
 
 #######chapters/topicchoice/comparison#######
 
-p = meta_exp.plot_against(measure='conv_time',token='N',strat_type='all',get_object=True)
+p = meta_exp.plot_against(measure='conv_time',token='N',strat_type=['naive','success_threshold_wise','mincounts',
+   'decision_vector_chunks'],get_object=True)
 p.xmin = 10
 p.ymin = 10
 plot_settings('normal')
@@ -543,7 +544,7 @@ savefig(p3,'laps_Nlink',plot_mode='fullwidth2')
 
 
 p1 = meta_exp.plot_against(token='time_scale',
-                            time_scale=list(range(1,16)),
+                            time_scale='all',#list(range(1,16)),
                             measure='conv_time',
                             get_object=True)
 p1.legendoptions['labels'] = ['Random Topic Choice']
@@ -631,3 +632,23 @@ p.xmax = 1.5*10**5
 p.legendoptions['labels'] = ['W=M','W=2M','W=$\infty$']
 p.title = 'Coherence homonymy'
 savefig(p,'coherence_WT',plot_mode='fullwidth2')
+
+
+#######chapters/laps/lapsHC#######
+
+p = meta_exp.plot('Nlink',get_object=True,N=100,strat_type='naive')
+p += meta_exp.plot('Nlink',get_object=True,N=100,strat_type='lapsmax_mab_explothreshold',time_scale=5)
+p += meta_exp.plot('Nlink',get_object=True,N=100,strat_type='coherence_last',time_scale=2)
+p.xmax = 6*10**5
+p.legendoptions['labels'] = ['Random Topic Choice','LAPSmax','Coherence']
+p.Yoptions[0]['linestyle']='--'
+savefig(p,'lapsHC_Nl',plot_mode='fullwidth2')
+
+
+p = meta_exp.plot('srtheo',get_object=True,N=100,strat_type='naive')
+p += meta_exp.plot('srtheo',get_object=True,N=100,strat_type='lapsmax_mab_explothreshold',time_scale=5)
+p += meta_exp.plot('srtheo',get_object=True,N=100,strat_type='coherence_last',time_scale=2)
+p.legendoptions['labels'] = ['Random Topic Choice','LAPSmax','Coherence']
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle']='--'
+savefig(p,'lapsHC_conv',plot_mode='fullwidth2')
