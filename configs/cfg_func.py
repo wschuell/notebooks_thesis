@@ -520,3 +520,54 @@
         }
 
     return base_cfg
+
+###userxp###
+
+    base_cfg = {
+      "step": 1,
+      "pop_cfg": {
+          "voc_cfg": {
+              "voc_type": "2dictdict"
+          },
+          "strat_cfg": {
+            "memory_policies":[{'mem_type':'interaction_counts_sliding_window_local','time_scale':2}],
+              "vu_cfg": {
+                  "vu_type": "minimalsynonly"
+              },
+              "success_cfg": {
+                  "success_type": "global"
+              },
+              "strat_type": "naive",
+              "allow_idk":True,
+          },
+          "nbagent": {{% N,5 %}},
+
+            "agent_init_cfg": {
+              "agent_init_type": "onedifferent",
+                'first_ag_cfg':{
+                    #'strat_cfg':{'strat_type':'naive'},
+                    'strat_cfg':{'strat_type':{{% strat_type,'naive' %}},'vu_cfg':{'vu_type':'minimal'}},
+                    'memory_policies':[{'mem_type':'past_interactions_all'}]}
+                    },
+          "env_cfg": {
+              "env_type": "simple",
+              "M": {{% M,5 %}},
+              "W": {{% W,6 %}}
+          },
+          "interact_cfg": {
+              "interact_type": "speakerschoice"
+          }
+      }
+    }
+
+    if {{% strat_type,'naive' %}} == 'success_threshold_wise':
+        base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = 0.5
+    elif {{% strat_type,'naive' %}} == 'mincounts':
+        base_cfg['pop_cfg']['strat_cfg']['mincounts'] = 0.9
+    # elif {{% strat_type,'naive' %}} == 'lapsmax_mab_explothreshold':
+    #     base_cfg['pop_cfg']['strat_cfg']['time_scale'] = 2
+    elif {{% strat_type,'naive' %}} == 'coherence_last':
+        base_cfg['pop_cfg']['strat_cfg']['time_scale'] = 3
+
+    return base_cfg
+

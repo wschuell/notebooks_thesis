@@ -701,6 +701,35 @@ configs = [
 "metrics_global":["conv_time","conv_time2","max_mem","max_N_d",'max_N_d_time','max_Nlink_time','tdiff_d','tdiff_w','tdiff_wd','conv_time3'],
 },
 
+################## user xp ##################""
+
+{"folder":"chapters/userxp/analysis",
+"imports":["import naminggamesal as ngal"],
+"nbiter":100,
+"additional_metrics":"classic",
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"userxp",
+"tmax_type":"userxp",
+"params":['N_userxp','M_userxp','W_userxp','strat_type_userxp'],
+"metrics_local":["srtheo"],
+"metrics_global":[],
+},
+
+
+{"folder":"chapters/userxp/tutorial",
+"imports":["import naminggamesal as ngal"],
+"nbiter":100,
+"additional_metrics":"classic",
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"userxp",
+"tmax_type":"tutorial",
+"params":['N_tutorial','M_tutorial','W_userxp','strat_type_userxp'],
+"metrics_local":["srtheo"],
+"metrics_global":[],
+},
+
 
 
 ]

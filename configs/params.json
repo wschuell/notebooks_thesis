@@ -12,6 +12,8 @@
         "N_10_100":{"param_name":"N","default_value":10,"label":"population size","values":[10,100],"min":0,"short_label":"N"},
         "N_1000":{"param_name":"N","default_value":1000,"label":"population size","values":[1000],"min":0,"short_label":"N"},
         "N_theory":{"param_name":"N","default_value":10,"label":"population size","values":[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100],"min":0,"short_label":"N"},
+        "N_userxp":{"param_name":"N","default_value":5,"label":"population size","values":[5],"min":0,"short_label":"N"},
+        "N_tutorial":{"param_name":"N","default_value":3,"label":"population size","values":[3],"min":0,"short_label":"N"},
 
         "M":{"param_name":"M","default_value":100,"label":"#meanings","values":[1,10,100],"min":0,"short_label":"M"},
         "M_1":{"param_name":"M","default_value":1,"label":"#meanings","values":[1],"min":0,"short_label":"M"},
@@ -24,8 +26,11 @@
         "M_all100":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100],"min":0,"short_label":"M"},
         "M_all1000":{"param_name":"M","default_value":40,"label":"#meanings","values":[1,10,20,40,50,70,100,200,500,1000],"min":0,"short_label":"M"},
         "M_scale":{"param_name":"M","default_value":10,"label":"#meanings","values":[1,2,5,10,20,50,100],"min":0,"short_label":"M"},
+        "M_userxp":{"param_name":"M","default_value":5,"label":"#meanings","values":[5],"min":0,"short_label":"M"},
+        "M_tutorial":{"param_name":"M","default_value":2,"label":"#meanings","values":[2],"min":0,"short_label":"M"},
 
         "W":{"param_name":"W","default_value":40,"label":"#words","values":[40],"min":0,"short_label":"W"},
+        "W_userxp":{"param_name":"W","default_value":6,"label":"#words","values":[6],"min":0,"short_label":"W"},
         "Wscale":{"param_name":"W","default_value":100,"label":"#words","values":[10,100,1000,10000],"min":0,"short_label":"W"},
 
         "W_inf":{"param_name":"W_inf","default_value":false,"values":[false,true],"short_label":"W_inf"},
@@ -91,6 +96,8 @@
         "strat_type_compare_perf":{"param_name":"strat_type","default_value":"naive","values":["naive","naive_smart","lapsmax_mab_explothreshold","negentropymax_mab_explothreshold","coherence_last","success_threshold_wise","mincounts"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_entropy":{"param_name":"strat_type","default_value":"naive","values":["naive","negentropymax_mab_explothreshold"],"short_label":"Strategy","label":"Strategy"},
         "strat_type_entropy2":{"param_name":"strat_type","default_value":"naive","values":["naive","negentropymax_mab_explothreshold","negentropymax_mab_explothreshold_only2ndlevel"],"short_label":"Strategy","label":"Strategy"},
+        "strat_type_userxp":{"param_name":"strat_type","default_value":"naive","values":["naive","naive_explobiased","success_threshold_wise","mincounts","lapsmax_mab_explothreshold","coherence_last"],"short_label":"Strategy","label":"Strategy"},
+
 
         "interact_type":{"param_name":"interact_type","default_value":"speakerschoice","values":["speakerschoice","hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},
         "interact_type_hearerschoice":{"param_name":"interact_type","default_value":"hearerschoice","values":["hearerschoice"],"short_label":"Interaction Scenario","label":"Interaction Scenario"},

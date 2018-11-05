@@ -13,11 +13,14 @@ M=100
 N=50
 W=2*M
 plot_settings('margin')
-plt.plot(list(range(M+1)),[(M-i)/M for i in range(M+1)])
+plt.plot(list(range(M+1)),[(M-i)/(M) for i in range(M+1)],label='Random')
+plt.plot(list(range(M+1)),[(1)/(i+1) for i in range(M+1)],label='ExploBiased')
 plt.xlabel('$\mu$')
 plt.ylabel('$D_{\mu}$')
+
 plt.xlim(0,M)
 plt.ylim(0,1)
+plt.legend()
 # plt.title('Decision Vector')
 savefig(None,'decvec_explobiased',plot_mode='margin')
 

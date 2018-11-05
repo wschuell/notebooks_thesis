@@ -25,3 +25,9 @@
 
 #####scaling_100####
     return min(max(5*{{% N,10 %}}**(1.5)*{{% M,20 %}},200),100000)
+
+#####userxp####
+    return 50
+
+#####tutorial####
+    return 10

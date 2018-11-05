@@ -5,11 +5,18 @@
 
 import os
 import matplotlib
+import seaborn as sns
+
 
 coeff = 2.
 coeff_font = 2.#1.65
 
 def plot_settings(ptype='normal'):
+	if ptype is not None and ptype[-2:] == '10':
+		sns.set_palette("deep")
+		ptype = ptype[:-2]
+	else:
+		sns.set_palette("deep6")
 	if ptype == 'margin':
 		fontsize = 10*coeff
 		figsize = 1.95*coeff,1.95*coeff
