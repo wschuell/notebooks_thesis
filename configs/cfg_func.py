@@ -535,7 +535,7 @@
                   "vu_type": "minimalsynonly"
               },
               "success_cfg": {
-                  "success_type": "global"
+                  "success_type": "global_norandom"
               },
               "strat_type": "naive",
               "allow_idk":True,

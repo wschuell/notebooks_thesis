@@ -655,3 +655,19 @@ p.legendoptions['labels'] = ['Random Topic Choice','LAPSmax','Coherence']
 p.xmax = 6*10**5
 p.Yoptions[0]['linestyle']='--'
 savefig(p,'lapsHC_conv',plot_mode='fullwidth2')
+
+
+#######chapters/userxp/analysis#######
+
+p = meta_exp.plot('srtheo',get_object=True,strat_type='naive')
+p.xmax = 50
+p.title = ''
+savefig(p,'userxp_srtheo',plot_mode='margin')
+
+
+#######chapters/userxp/tutorial#######
+
+p = meta_exp.plot('srtheo',get_object=True,strat_type='naive')
+p.xmax = 10
+p.title = ''
+savefig(p,'tutorial_srtheo',plot_mode='margin')

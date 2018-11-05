@@ -712,7 +712,7 @@ configs = [
 "func_type":"userxp",
 "tmax_type":"userxp",
 "params":['N_userxp','M_userxp','W_userxp','strat_type_userxp'],
-"metrics_local":["srtheo"],
+"metrics_local":["srtheo","actual_successrate"],
 "metrics_global":[],
 },
 
