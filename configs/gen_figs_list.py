@@ -659,10 +659,292 @@ savefig(p,'lapsHC_conv',plot_mode='fullwidth2')
 
 #######chapters/userxp/analysis#######
 
+import analysis,measures
+import numpy as np
+import seaborn as sns
+import pandas as pd
+
+mlabel = 'μ'
+
 p = meta_exp.plot('srtheo',get_object=True,strat_type='naive')
 p.xmax = 50
 p.title = ''
 savefig(p,'userxp_srtheo',plot_mode='margin')
+
+
+plt.figure()
+res_list = analysis.prepare_analysis(nb=80)
+# res_listB = analysis.prepare_analysis(nb=80,discard=True)
+# res_listC = analysis.prepare_analysis(nb=80,discard=True,reverse=True)
+res_listB = res_list
+res_listC = res_list
+
+
+palette ={"Data":"C0",
+          "DataKreyon":"C1",
+          "Random":"C2",
+          "ExploBiased":"C3",
+          "ST0.5":"C4",
+          "MC1":"C5",
+          "LAPSmax":"C6",
+          "Coherence":"C7",
+          "Total":"k"}
+xlabel = ''
+ylabel = ' '
+assert xlabel != ylabel
+dat = {xlabel:[],ylabel:[]}
+for r in res_list:
+    dat[xlabel].append(r.name)
+    dat[ylabel].append(getattr(measures,'scores')(r,data=True))
+a = []
+names = []
+dat = dict()
+for r in res_list:
+    a.append(measures.scores(r,data=True))
+    names.append(r.name)
+    if r.name == 'DataKreyon':
+        a[-1] = [np.nan]
+    dat[r.name] = a[-1]
+#plt.bar(x=names,height=a)
+# a = a[0:2]+[0]+a[2:-1]
+# names = names[0:2]+['']+names[2:-1]
+b = []
+d2 = {xlabel:[],ylabel:[]}
+
+if hasattr(a[0],'items'):
+    for aa,n in zip(a,names):
+        bb = []
+        for k,v in aa.items():
+            bb.extend(v)
+            for vv in v:
+                d2[xlabel].append(n)
+                d2[ylabel].append(vv)
+        b.append(bb)
+else:
+    for aa,n in zip(a,names):
+        for aaa in aa:
+            d2[xlabel].append(n)
+            d2[ylabel].append(aaa)
+
+#sns.violinplot(x='name',y='value',data=pd.DataFrame(d2),cut=0)
+plt.xticks(rotation='vertical')
+plt.title('Scores')
+plt.ylim(ymax=100)
+plot_settings('normal10')
+ax = sns.violinplot(x=xlabel,y=ylabel,data=pd.DataFrame(d2),palette=palette,cut=0)
+
+savefig(None,'userxp_scores',plot_mode='normal10')
+
+
+plt.figure()
+xlabel = ''
+ylabel = ' '
+title = 'Scores'
+m = 'scores'
+
+import numpy as np
+plot_settings('normal10')
+import matplotlib.pyplot as plt
+plt.xticks(rotation='vertical')
+plt.title(title)
+plt.ylim(ymax=100)
+ax = sns.violinplot(x=xlabel,y=ylabel,data=analysis.get_df(res_list=res_list,m=m),palette=palette,cut=0)
+savefig(None,'userxp_scores2',plot_mode='normal10')
+
+
+plt.figure()
+dat = {xlabel:[],ylabel:[]}
+for r in res_list:
+    vec = r.get_measure(measure='nb_inv',level='xp')
+    dat[xlabel].extend([r.name for v in vec])
+    dat[ylabel].extend(vec)
+plot_settings('normal10')
+import matplotlib.pyplot as plt
+plt.xticks(rotation='vertical')
+plt.title('Number of inventions')
+ax = sns.barplot(x=xlabel,y=ylabel,data=pd.DataFrame(dat),palette=palette)
+
+for i in [0,1]:
+    ax.patches[i].set_hatch('//')
+
+savefig(None,'userxp_nbinv',plot_mode='normal10')
+
+plt.figure()
+dat = {xlabel:[],ylabel:[]}
+for r in res_list:
+    vec = r.get_measure(measure='nb_inv',level='xp')
+    dat[xlabel].extend([r.name for v in vec])
+    dat[ylabel].extend(vec)
+plot_settings('normal10')
+import matplotlib.pyplot as plt
+plt.xticks(rotation='vertical')
+plt.title('Number of inventions')
+ax = sns.barplot(x=xlabel,y=ylabel,data=pd.DataFrame(dat),palette=palette)
+
+for i in [0,1]:
+    ax.patches[i].set_hatch('//')
+
+savefig(None,'userxp_nbinv',plot_mode='normal10')
+
+
+
+plt.figure()
+xlabel = ''
+ylabel = ' '
+title = 'Success Threshold'
+m = 'success_threshold'
+
+import numpy as np
+plot_settings('normal10')
+import matplotlib.pyplot as plt
+plt.xticks(rotation='vertical')
+plt.title(title)
+plt.ylim(ymax=1.)
+ax = sns.violinplot(x=xlabel,y=ylabel,data=analysis.get_df(res_list=res_list,m=m),palette=palette,cut=0)
+savefig(None,'userxp_ST',plot_mode='normal10')
+
+plt.figure()
+xlabel = ''
+ylabel = ' '
+title = 'Min. Counts'
+m = 'mincounts'
+
+import numpy as np
+plot_settings('normal10')
+import matplotlib.pyplot as plt
+plt.xticks(rotation='vertical')
+plt.title(title)
+# plt.ylim(ymax=1.)
+ax = sns.violinplot(x=xlabel,y=ylabel,data=analysis.get_df(res_list=res_list,m=m),palette=palette,cut=0)
+savefig(None,'userxp_MC',plot_mode='normal10')
+
+
+plt.figure()
+xlabel = ''
+ylabel = ' '
+title = 'LAPS normalized'
+m = 'laps_m'
+
+import numpy as np
+plot_settings('normal10')
+import matplotlib.pyplot as plt
+plt.xticks(rotation='vertical')
+plt.title(title)
+plt.ylim(ymax=1.)
+ax = sns.violinplot(x=xlabel,y=ylabel,data=analysis.get_df(res_list=res_list,m=m),palette=palette,cut=0)
+savefig(None,'userxp_laps',plot_mode='normal10')
+
+
+
+
+plt.figure()
+xlabel = ''
+ylabel = ' '
+title = 'Coherence'
+m = 'coher_m'
+
+import numpy as np
+plot_settings('normal10')
+import matplotlib.pyplot as plt
+plt.xticks(rotation='vertical')
+plt.title(title)
+# plt.ylim(ymax=1.)
+ax = sns.violinplot(x=xlabel,y=ylabel,data=analysis.get_df(res_list=res_list,m=m),palette=palette,cut=0)
+savefig(None,'userxp_coher',plot_mode='normal10')
+
+
+
+plt.figure()
+dat = {xlabel:[],ylabel:[],mlabel:[]}
+for r in res_list:
+    dd = getattr(measures,'explo_rate')(r,data=True)
+    for k,v in dd.items():
+        for vv in v:
+            dat[xlabel].append(r.name)
+            dat[ylabel].append(vv)
+            dat[mlabel].append(k)
+
+import matplotlib.pyplot as plt
+import matplotlib
+
+plot_settings('fullwidth10')
+g = sns.catplot(x=mlabel,y=ylabel,hue=xlabel,data=pd.DataFrame(dat),kind='bar',palette=palette,legend=False)
+
+#g = sns.catplot(x=xlabel,y=ylabel,data=pd.DataFrame(dat),kind='bar')
+plt.ylim(ymax=1)
+plt.title('Exploration rate per lexicon size')
+
+for ax in g.axes:
+    for i in range(12):
+        ax[0].patches[i].set_hatch('//')
+
+
+g.fig.set_figheight(matplotlib.rcParams['figure.figsize'][1] )
+g.fig.set_figwidth(matplotlib.rcParams['figure.figsize'][0])
+plt.legend(ncol=2)
+savefig(None,'userxp_explorate',plot_mode='fullwidth10')
+
+
+plt.figure()
+dat = {xlabel:[],ylabel:[],mlabel:[]}
+for r in res_listB:
+    dd = getattr(measures,'explo_rate')(r,data=True)
+    for k,v in dd.items():
+        for vv in v:
+            dat[xlabel].append(r.name)
+            dat[ylabel].append(vv)
+            dat[mlabel].append(k)
+
+import matplotlib.pyplot as plt
+import matplotlib
+
+plot_settings('fullwidth10')
+g = sns.catplot(x=mlabel,y=ylabel,hue=xlabel,data=pd.DataFrame(dat),kind='bar',palette=palette,legend=False)
+
+#g = sns.catplot(x=xlabel,y=ylabel,data=pd.DataFrame(dat),kind='bar')
+plt.ylim(ymax=1)
+plt.title('Exploration rate per lexicon size')
+
+for ax in g.axes:
+    for i in range(12):
+        ax[0].patches[i].set_hatch('//')
+
+
+g.fig.set_figheight(matplotlib.rcParams['figure.figsize'][1] )
+g.fig.set_figwidth(matplotlib.rcParams['figure.figsize'][0])
+plt.legend(ncol=2)
+savefig(None,'userxp_explorateB',plot_mode='fullwidth10')
+
+
+plt.figure()
+dat = {xlabel:[],ylabel:[],mlabel:[]}
+for r in res_listC:
+    dd = getattr(measures,'explo_rate')(r,data=True)
+    for k,v in dd.items():
+        for vv in v:
+            dat[xlabel].append(r.name)
+            dat[ylabel].append(vv)
+            dat[mlabel].append(k)
+
+import matplotlib.pyplot as plt
+import matplotlib
+
+plot_settings('fullwidth10')
+g = sns.catplot(x=mlabel,y=ylabel,hue=xlabel,data=pd.DataFrame(dat),kind='bar',palette=palette,legend=False)
+
+#g = sns.catplot(x=xlabel,y=ylabel,data=pd.DataFrame(dat),kind='bar')
+plt.ylim(ymax=1)
+plt.title('Exploration rate per lexicon size')
+
+for ax in g.axes:
+    for i in range(12):
+        ax[0].patches[i].set_hatch('//')
+
+
+g.fig.set_figheight(matplotlib.rcParams['figure.figsize'][1] )
+g.fig.set_figwidth(matplotlib.rcParams['figure.figsize'][0])
+plt.legend(ncol=2)
+savefig(None,'userxp_explorateC',plot_mode='fullwidth10')
 
 
 #######chapters/userxp/tutorial#######

@@ -29,5 +29,8 @@
 #####userxp####
     return 50
 
+#####userxp_long####
+    return 1000
+
 #####tutorial####
     return 10

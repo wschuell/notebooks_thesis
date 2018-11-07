@@ -152,11 +152,15 @@
     if base_cfg['pop_cfg']['strat_cfg']['strat_type'][:17] == 'success_threshold':
         if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
             base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.8 %}}
+        elif {{% M,100 %}} == 5 and {{% W,100 %}} == 6:
+            base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.5 %}}
         else:
             base_cfg['pop_cfg']['strat_cfg']['threshold_explo'] = {{% threshold_param,0.2 %}}
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:9] == 'mincounts':
         if base_cfg['pop_cfg']['interact_cfg']['interact_type'] == 'speakerschoice':
             base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.6 %}})
+        elif {{% M,100 %}} == 5 and {{% W,100 %}} == 6:
+            base_cfg['pop_cfg']['strat_cfg']['mincounts'] = 0.9
         else:
             base_cfg['pop_cfg']['strat_cfg']['mincounts'] = int({{% N,100 %}}*{{% mincounts_param,0.2 %}})
     elif base_cfg['pop_cfg']['strat_cfg']['strat_type'][:16] == 'decision_vector_':

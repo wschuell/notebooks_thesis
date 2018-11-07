@@ -731,6 +731,19 @@ configs = [
 },
 
 
+{"folder":"chapters/userxp/simu",
+"imports":["import naminggamesal as ngal"],
+"nbiter":100,
+"additional_metrics":"classic",
+"exec_type":"avakas",
+"plt_settings":"classic",
+"func_type":"laps",
+"tmax_type":"userxp_long",
+"params":['N_userxp','M_userxp','W_userxp','strat_type_userxp','W_inf_false'],
+"metrics_local":["srtheo","actual_successrate"],
+"metrics_global":[],
+},
+
 
 ]
 

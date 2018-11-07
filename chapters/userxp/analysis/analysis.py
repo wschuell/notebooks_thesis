@@ -430,7 +430,8 @@ class ResultsFromFolder(ResultsFromXPFiles):
 		files = glob.glob(folder+'/*.json')
 		ResultsFromXPFiles.__init__(self,files=files)
 
-
+db = ngal.ngdb.NamingGamesDB()
+db.move_to_RAM()
 
 class ResultsFromSimu(Results):
 	def __init__(self,xp_cfg,T,nb,all_agents=True):
@@ -438,7 +439,7 @@ class ResultsFromSimu(Results):
 		self.nb = nb
 		self.T = T
 		self.all_agents = all_agents
-		self.db = ngal.ngdb.NamingGamesDB()
+		self.db = db
 		self.xp_cfg = copy.deepcopy(xp_cfg)
 		if 'memory_policies' not in self.xp_cfg['pop_cfg']['strat_cfg']:
 			self.xp_cfg['pop_cfg']['strat_cfg']['memory_policies'] = []
@@ -489,6 +490,52 @@ def results_from_strat(strat_cfg,name,all_agents=True,nb=80):
 	# else:
 	# 	res.name += '_oneagent'
 	return res
+
+
+
+
+def get_df(res_list,m):
+	xlabel = ''
+	ylabel = ' '
+	assert xlabel != ylabel
+	dat = {xlabel:[],ylabel:[]}
+	for r in res_list:
+		dat[xlabel].append(r.name)
+		dat[ylabel].append(getattr(measures,m)(r,data=True))
+
+	a = []
+	names = []
+	dat = dict()
+	for r in res_list:
+		a.append(getattr(measures,m)(r,data=True))
+		names.append(r.name)
+		if m == 'scores' and r.name == 'DataKreyon' and a[-1] == []:
+			a[-1] = [np.nan]
+		dat[r.name] = a[-1]
+	#plt.bar(x=names,height=a)
+	# a = a[0:2]+[0]+a[2:-1]
+	# names = names[0:2]+['']+names[2:-1]
+	b = []
+	d2 = {xlabel:[],ylabel:[]}
+
+	if hasattr(a[0],'items'):
+		for aa,n in zip(a,names):
+			bb = []
+			for k,v in aa.items():
+				bb.extend(v)
+				for vv in v:
+					d2[xlabel].append(n)
+					d2[ylabel].append(vv)
+			b.append(bb)
+
+	else:
+		for aa,n in zip(a,names):
+			for aaa in aa:
+				d2[xlabel].append(n)
+				d2[ylabel].append(aaa)
+
+	return pd.DataFrame(d2)
+
 
 def prepare_analysis(nb=80,discard=False,reverse=False):
 
@@ -708,7 +755,6 @@ if __name__ == '__main__':
 
 
 
-
 	for m in measures_m:
 		print('\n\n',m,'\n')
 		for r in res_list:
@@ -733,10 +779,14 @@ if __name__ == '__main__':
 		for r in res_list:
 			print(r.name,getattr(r,m)())
 
+
 	for m in measures_ter:
 		print('\n\n',m,'\n')
 		for r in res_list:
 			print(r.name,getattr(measures,m)(r))
+
+	for r in res_list:
+		print(measures.similarity_class(r))
 
 	for m in measures_ter2:
 		a = []
@@ -819,9 +869,6 @@ if __name__ == '__main__':
 		sns.catplot(x='m',y='value',hue='name',data=pd.DataFrame(d2),kind='bar')
 		plt.title(m)
 		plt.show()
-
-	for r in res_list:
-		print(measures.similarity_class(r))
 
 	# for a in res_list[4].pi_struct:
 	# 	for pi in a[0]:

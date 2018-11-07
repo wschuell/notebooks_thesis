@@ -185,6 +185,22 @@ def add_explo(res):
 					pi['explo'] = (pi['role'] == 'speaker' and pi['ms'] not in known_m)
 					known_m.add(pi['ms'])
 
+def add_explodelay(res):
+	if 'explodelay' not in res.options:
+		res.options.append('explodelay')
+		for u in res.pi_struct:
+			for xp in u:
+				counter = 0
+				known_m = set()
+				for pi in xp:
+					pi['explodelay'] = counter
+					if pi['ms'] not in known_m:
+						counter = 0
+					else:
+						counter += 1
+					known_m.add(pi['ms'])
+
+
 def add_counts(res):
 	if 'counts' not in res.options:
 		res.options.append('counts')
@@ -316,6 +332,7 @@ def template_measure(measure,res,data=False,global_mean=False,level_xp=False,*ar
 	add_laps(res)
 	add_coherencecounts(res)
 	add_explo(res)
+	add_explodelay(res)
 	add_counts(res)
 	add_lapscriterion(res)
 	add_STcriterion(res)
@@ -345,6 +362,7 @@ def template_measure_xp(measure,res,data=False,global_mean=False,*args,**kwargs)
 	add_laps(res)
 	add_coherencecounts(res)
 	add_explo(res)
+	add_explodelay(res)
 	add_counts(res)
 	add_lapscriterion(res)
 	add_STcriterion(res)
@@ -428,10 +446,15 @@ def pi_explo_rate(pi,val):
 	if pi['role'] == 'speaker':
 		val[pi['KM']].append(float(pi['explo']))
 
+def pi_explodelay(pi,val):
+	if pi['explo']:
+		val[pi['KM']].append(float(pi['explodelay']))
+
 def pi_criterion(pi,val,criterion):
 	if pi['KM'] not in [0,5]:
 		# val[pi['KM']].append(float(pi['explo_'+criterion] == pi['explo']))
-		val[pi['KM']].append( ( (1.-pi['explo'])*(1.-pi['explo_'+criterion]) + (pi['explo'] * pi['explo_'+criterion]) )/max(pi['explo_'+criterion],1.-pi['explo_'+criterion]) )
+		# val[pi['KM']].append( ( (1.-pi['explo'])*(1.-pi['explo_'+criterion]) + (pi['explo'] * pi['explo_'+criterion]) )/max(pi['explo_'+criterion],1.-pi['explo_'+criterion]) )
+		val[pi['KM']].append(     np.log((1.-pi['explo'])*(1.-pi['explo_'+criterion]) + (pi['explo'] * pi['explo_'+criterion])) )
 
 def pi_criterion_partial(pi,val,criterion):
 	if pi['explo'] and pi['KM'] != 0 :
@@ -494,6 +517,9 @@ def mincounts_m(res,data=False):
 
 def explo_rate(res,data=False):
 	return template_measure(res=res,measure=pi_explo_rate,global_mean=True,data=data)
+
+def explodelay(res,data=False):
+	return template_measure(res=res,measure=pi_explodelay,global_mean=True,data=data)
 
 def explo_rate_m(res,data=False):
 	return template_measure(res=res,measure=pi_explo_rate,data=data)

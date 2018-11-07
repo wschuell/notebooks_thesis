@@ -35,8 +35,10 @@
 
         "W_inf":{"param_name":"W_inf","default_value":false,"values":[false,true],"short_label":"W_inf"},
         "W_inf_true":{"param_name":"W_inf","default_value":true,"values":[true],"short_label":"W_inf"},
+        "W_inf_false":{"param_name":"W_inf","default_value":false,"values":[false],"short_label":"W_inf"},
         "W_inf_all":{"param_name":"W_inf","default_value":2,"values":[false,2,true],"short_label":"W_inf"},
         "W_inf_2":{"param_name":"W_inf","default_value":2,"values":[2],"short_label":"W_inf"},
+        "Winf_userxp":{"param_name":"W_inf","default_value":1.2,"values":[1.2],"short_label":"W_inf"},
 
         "time_scale":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,4,5,6,7,8,9,10,20,30,50],"min":0,"max":30,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
         "time_scale_few":{"param_name":"time_scale","default_value":1,"label":"time scale","values":[1,2,3,5,7,10],"min":0,"max":10,"short_label":"$\\tau$","unit_label":"Time scale $\\tau$"},
