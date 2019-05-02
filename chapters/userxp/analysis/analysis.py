@@ -80,9 +80,22 @@ xp_cfg_alone = {
 	}
 
 
-def info_dict(filepath):
+def info_dict_read(filepath):
 	with open(filepath,'r') as f:
 		return json.loads(f.read())
+
+def clean_dict(info_dict):
+	ans = []
+	for elt in info_dict:
+		if elt['model'] in ['ng.userng','ng.experiment','ng.pastinteraction','ng.score','ng.subscore']:
+			ans.append(elt)
+	return ans
+
+def clean_file(filename):
+	info_dict = info_dict_read(filename+'.json')
+	with open(filename+'_cleaned.json','w') as f:
+		f.write(json.dumps(clean_dict(info_dict)))
+
 
 def processed_info_dict(info_dict):
 	model_dict = defaultdict(dict)
@@ -232,7 +245,7 @@ def get_pi_list(xp):
 
 class Results(object):
 	def __init__(self,filepath,filter_dict={}):
-		self.info_dict = filter(processed_info_dict(info_dict(filepath=filepath)),**filter_dict)
+		self.info_dict = filter(processed_info_dict(info_dict_read(filepath=filepath)),**filter_dict)
 		self.pi_struct = []
 		for u in self.info_dict.values():
 			u_l = []

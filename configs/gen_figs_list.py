@@ -426,6 +426,35 @@ for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
     yopt['marker'] = m
 savefig(p,'perf_ct',plot_mode='normal')
 
+p = meta_exp.plot_against(measure='perf_ct',
+                          token='N',
+                          strat_type=['naive','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','LAPSmax','Coherence']
+p.title = 'Performance: Convergence time'
+for yopt,m in zip(p.Yoptions,['o','s','v']):
+    yopt['marker'] = m
+savefig(p,'perf_ct2',plot_mode='normal')
+
+
+p = meta_exp.plot_against(measure='perf_cs',
+                          token='N',
+                          strat_type=['naive','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','LAPSmax','Coherence']
+p.title = 'Performance: Convergence speed'
+for yopt,m in zip(p.Yoptions,['o','s','v']):
+    yopt['marker'] = m
+savefig(p,'perf_cs2',plot_mode='normal')
+
 
 p = meta_exp.plot_against(measure='perf_cs',
                           token='N',
@@ -500,6 +529,21 @@ p.title = 'Performance: Lexicon size'
 for yopt,m in zip(p.Yoptions,['o','s','v','d','+']):
     yopt['marker'] = m
 savefig(p,'perf_ls',plot_mode='normal')
+
+
+p = meta_exp.plot_against(measure='perf_ls',
+                          token='N',
+                          strat_type=['naive','lapsmax_mab_explothreshold','coherence_last'],
+                          nbiter=8,get_object=True)
+p.ymin=0
+p.ymax=1
+p.semilog= True
+p.xmin = 10
+p.legendoptions['labels'] = ['Random','LAPSmax','Coherence']
+p.title = 'Performance: Lexicon size'
+for yopt,m in zip(p.Yoptions,['o','s','v']):
+    yopt['marker'] = m
+savefig(p,'perf_ls2',plot_mode='normal')
 
 #######chapters/laps/lapsT2#######
 
@@ -579,6 +623,34 @@ p.legendoptions['labels'] = ['Random','Success Threshold', 'Min. Counts', 'Chunk
 p.Yoptions[0]['linestyle'] = '--'
 savefig(p,'previous_Nlink',plot_mode='fullwidth2')
 
+
+
+slide_type = 'fullwidth2'
+p = meta_exp.plot('srtheo',strat_type=['naive','naive_explobiased'],get_object=True,vu_type='minimal')
+p.legendoptions['labels'] = ['Random','Explo. Biased']
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle']='--'
+savefig(p,'previous_srtheo_pres1',plot_mode=slide_type)
+
+p = meta_exp.plot('Nlink',strat_type=['naive','naive_explobiased'],get_object=True,vu_type='minimal')
+p.legendoptions['labels'] = ['Random','Explo. Biased']
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle']='--'
+savefig(p,'previous_Nlink_pres1',plot_mode=slide_type)
+
+p = meta_exp.plot('srtheo',strat_type=['naive','success_threshold_wise','mincounts','naive_explobiased'],get_object=True,vu_type='minimal')
+p.legendoptions['labels'] = ['Random','Success Threshold','Min. Counts','Explo. Biased']
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle']='--'
+savefig(p,'previous_srtheo_pres2',plot_mode=slide_type)
+
+p = meta_exp.plot('Nlink',strat_type=['naive','success_threshold_wise','mincounts','naive_explobiased'],get_object=True,vu_type='minimal')
+p.legendoptions['labels'] = ['Random','Success Threshold','Min. Counts','Explo. Biased']
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle']='--'
+savefig(p,'previous_Nlink_pres2',plot_mode=slide_type)
+
+
 #######chapters/laps/normal#######
 
 p = meta_exp.plot(measure='entropy_final',N=1000,get_object=True)
@@ -619,6 +691,22 @@ p2.legendoptions['labels'][3] = '_nolegend_'
 p2.legendoptions['labels'][5] = '_nolegend_'
 p2.Yoptions[3]['alpha'] = 0.
 savefig(p2,'laps_Nlscaling',plot_mode='fullwidth2')
+
+slide_type = 'fullwidth2'
+
+p = meta_exp.plot('srtheo',strat_type=['naive','lapsmax_mab_explothreshold','coherence_last'],get_object=True)
+p.legendoptions['labels'] = ['Random','LAPSmax','Coherence']
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle']='--'
+
+savefig(p,'previous_srtheo_pres3',plot_mode=slide_type)
+
+p = meta_exp.plot('Nlink',strat_type=['naive','lapsmax_mab_explothreshold','coherence_last'],get_object=True)
+p.legendoptions['labels'] = ['Random','LAPSmax','Coherence']
+p.xmax = 6*10**5
+p.Yoptions[0]['linestyle']='--'
+
+savefig(p,'previous_Nlink_pres3',plot_mode=slide_type)
 
 #######chapters/laps/lapsWT#######
 
